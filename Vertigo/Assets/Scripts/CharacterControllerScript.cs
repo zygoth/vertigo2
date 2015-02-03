@@ -30,19 +30,51 @@ public class CharacterControllerScript: MonoBehaviour
 
 	void doMovement()
 	{
-		float move = Input.GetAxis("Horizontal");
-		
-		anim.SetFloat("Speed", Mathf.Abs(move));
+		float horizontal = Input.GetAxis("Horizontal");
+		float vertical = Input.GetAxis ("Vertical");
 
-		if(Mathf.Abs(move) > 0)
+		float movement;
+
+		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.UP)
 		{
-			rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+			movement = horizontal;
+			vertical = 0f;
+		}
+		else
+		{
+			movement = vertical;
+			horizontal = 0f;
+		}
+		
+		anim.SetFloat("Speed", Mathf.Abs(movement));
+
+		if(Mathf.Abs(movement) > 0)
+		{
+			if(horizontal == 0)
+			{
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, vertical * maxSpeed);
+			}
+			else
+			{
+				rigidbody2D.velocity = new Vector2(horizontal * maxSpeed, rigidbody2D.velocity.y);
+			}
 		}
 
-		if(move > 0 &&!facingRight)
-			Flip();
-		else if (move < 0 && facingRight)
-			Flip();
+		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.RIGHT)
+		{
+			if(movement > 0 && !facingRight)
+				Flip();
+			else if (movement < 0 && facingRight)
+				Flip();
+		}
+
+		if(gravity == gravityDirection.UP || gravity == gravityDirection.LEFT)
+		{
+			if(movement < 0 && !facingRight)
+				Flip();
+			else if (movement > 0 && facingRight)
+				Flip();
+		}
 	}
 	
 	void FixedUpdate()
@@ -59,7 +91,26 @@ public class CharacterControllerScript: MonoBehaviour
 		if (grounded && Input.GetKeyDown(KeyCode.Space))
 		{
 			anim.SetBool ("Ground", false);
-			rigidbody2D.AddForce (new Vector2(0, jumpForce));
+
+			Vector2 jumpVector = new Vector2();
+
+			switch(gravity)
+			{
+				case gravityDirection.DOWN:
+					jumpVector = (new Vector2(0, jumpForce));
+					break;
+				case gravityDirection.RIGHT:
+					jumpVector = (new Vector2(-jumpForce, 0));
+					break;
+				case gravityDirection.UP:
+					jumpVector = (new Vector2(0, -jumpForce));
+					break;
+				case gravityDirection.LEFT:
+					jumpVector = (new Vector2(jumpForce, 0));
+					break;
+			}
+
+			rigidbody2D.AddForce (jumpVector);
 		}
 	}
 
