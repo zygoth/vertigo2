@@ -12,6 +12,11 @@ public class CameraController : MonoBehaviour
 		currentMode = ScreenMode.FREE;
 	}
 
+	public void setOrientation(ScreenMode newMode)
+	{
+		currentMode = newMode;
+	}
+
 	void FixedUpdate () 
 	{
 		GameObject character = GameObject.Find ("Character");

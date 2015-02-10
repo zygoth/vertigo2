@@ -13,7 +13,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public Transform groundCheck;
 	float groundRadius = 0.2f;
 	public LayerMask whatIsGround;
-	public float jumpForce = 700f;
+	public float JUMPFORCE = 800f;
 	public enum gravityDirection {DOWN, LEFT, UP, RIGHT};
 	public gravityDirection gravity = gravityDirection.DOWN;
 	
@@ -97,16 +97,16 @@ public class CharacterControllerScript: MonoBehaviour
 			switch(gravity)
 			{
 				case gravityDirection.DOWN:
-					jumpVector = (new Vector2(0, jumpForce));
+					jumpVector = (new Vector2(0, JUMPFORCE));
 					break;
 				case gravityDirection.RIGHT:
-					jumpVector = (new Vector2(-jumpForce, 0));
+					jumpVector = (new Vector2(-JUMPFORCE, 0));
 					break;
 				case gravityDirection.UP:
-					jumpVector = (new Vector2(0, -jumpForce));
+					jumpVector = (new Vector2(0, -JUMPFORCE));
 					break;
 				case gravityDirection.LEFT:
-					jumpVector = (new Vector2(jumpForce, 0));
+					jumpVector = (new Vector2(JUMPFORCE, 0));
 					break;
 			}
 
@@ -130,7 +130,7 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
-	void doWrapCheck()
+	void doWrapping()
 	{
 		GameObject camera = GameObject.Find ("Main Camera");
 		CameraController cameraScript = (CameraController) camera.GetComponent ("CameraController");
@@ -139,8 +139,25 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			if(transform.position.y < cameraScript.transform.position.y - 13)
 			{
-				//transform.position.y = cameraScript.transform.position.y - 13;
-				Debug.Log ("wrappage");
+				transform.position = new Vector3 (transform.position.x, cameraScript.transform.position.y + 13, transform.position.z);
+			}
+
+			if(transform.position.y > cameraScript.transform.position.y + 13)
+			{
+				transform.position = new Vector3 (transform.position.x, cameraScript.transform.position.y - 13, transform.position.z);
+			}
+		}
+		else
+		if(cameraScript.currentMode == CameraController.ScreenMode.VERTICAL)
+		{
+			if(transform.position.x < cameraScript.transform.position.x - 17)
+			{
+				transform.position = new Vector3 (cameraScript.transform.position.x + 17, transform.position.y, transform.position.z);
+			}
+			
+			if(transform.position.x > cameraScript.transform.position.x + 17)
+			{
+				transform.position = new Vector3 (cameraScript.transform.position.x - 17, transform.position.y, transform.position.z);
 			}
 		}
 	}
@@ -148,7 +165,7 @@ public class CharacterControllerScript: MonoBehaviour
 	void Update()
 	{
 		doJumpCheck ();
-		doWrapCheck ();
+		doWrapping ();
 	}
 	
 	void Flip()
