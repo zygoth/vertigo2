@@ -76,7 +76,7 @@ public class CharacterControllerScript: MonoBehaviour
 				Flip();
 		}
 	}
-	
+
 	void FixedUpdate()
 	{
 		doGroundCheck ();
@@ -130,19 +130,25 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
-	void doGravityCheck()
+	void doWrapCheck()
 	{
-		if (Input.GetKeyDown(KeyCode.R))
+		GameObject camera = GameObject.Find ("Main Camera");
+		CameraController cameraScript = (CameraController) camera.GetComponent ("CameraController");
+
+		if (cameraScript.currentMode == CameraController.ScreenMode.HORIZONTAL)
 		{
-			RotateLeft();
+			if(transform.position.y < cameraScript.transform.position.y - 13)
+			{
+				//transform.position.y = cameraScript.transform.position.y - 13;
+				Debug.Log ("wrappage");
+			}
 		}
 	}
 
 	void Update()
 	{
 		doJumpCheck ();
-
-		doGravityCheck ();
+		doWrapCheck ();
 	}
 	
 	void Flip()

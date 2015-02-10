@@ -18,9 +18,22 @@ public class CameraController : MonoBehaviour
 		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
 
 		float newX = script.transform.position.x;
-		float newY = transform.position.y;
-		float newZ = transform.position.z;
+		float newY = script.transform.position.y;
+		float newZ = script.transform.position.z;
 
-		transform.position = new Vector3 (newX, newY, newZ);
+		if (currentMode == ScreenMode.HORIZONTAL) 
+		{
+			transform.position = new Vector3 (newX, transform.position.y, transform.position.z);
+		}
+		else
+		if (currentMode == ScreenMode.VERTICAL) 
+		{
+			transform.position = new Vector3 (transform.position.x, newY, transform.position.z);
+		}
+		else
+		if (currentMode == ScreenMode.FREE) 
+		{
+			transform.position = new Vector3 (newX, newY, transform.position.z);
+		}
 	}
 }
