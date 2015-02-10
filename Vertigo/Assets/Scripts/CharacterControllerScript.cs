@@ -117,6 +117,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public void RotateLeft () 
 	{
 		transform.Rotate (0, 0, -90f);
+		Debug.Log ("rotation" + transform.rotation.z);
 		gravity = (gravityDirection)((((int)gravity) + 1) % 4);
 		gravityVector = new Vector2 (gravityVector.y, -gravityVector.x);
 	}
