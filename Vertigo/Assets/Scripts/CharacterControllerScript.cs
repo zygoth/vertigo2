@@ -3,23 +3,48 @@ using System.Collections;
 
 public class CharacterControllerScript: MonoBehaviour
 {
-	public float maxSpeed = 10f;
+	// Maximum run speed
+	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
-	bool facingRight = true;
-	
+	bool facingRight = true;	
 	Animator anim;
-
 	bool grounded = false;
 	public Transform groundCheck;
 	float groundRadius = 0.2f;
 	public LayerMask whatIsGround;
 	public float JUMPFORCE = 800f;
+	// Enum for gravity direction
 	public enum gravityDirection {DOWN, LEFT, UP, RIGHT};
+	// The current gravity direction
 	public gravityDirection gravity = gravityDirection.DOWN;
-	
+
+	/*
+	 * Called when the object is instantiated (I think).
+	 */
 	void Start()
 	{
 		anim = GetComponent<Animator>();
+	}
+
+	/*
+	 * Called at fixed intervals during the game.  Use for things that must happen at steady intervals of time. 
+	 */
+	void FixedUpdate()
+	{
+		doGroundCheck ();
+
+		doMovement ();
+
+		rigidbody2D.AddForce (gravityVector);
+	}
+
+	/*
+	 * Called every time a frame is rendered on screen, so may happen at variable rates.  Use for interrupt-based events.
+	 */
+	void Update()
+	{
+		doJumpCheck ();
+		doWrapping ();
 	}
 
 	void doGroundCheck()
@@ -27,14 +52,14 @@ public class CharacterControllerScript: MonoBehaviour
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("Ground", grounded);
 	}
-
+	
 	void doMovement()
 	{
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis ("Vertical");
-
+		
 		float movement;
-
+		
 		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.UP)
 		{
 			movement = horizontal;
@@ -47,19 +72,19 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 		
 		anim.SetFloat("Speed", Mathf.Abs(movement));
-
+		
 		if(Mathf.Abs(movement) > 0)
 		{
 			if(horizontal == 0)
 			{
-				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, vertical * maxSpeed);
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, vertical * MAXSPEED);
 			}
 			else
 			{
-				rigidbody2D.velocity = new Vector2(horizontal * maxSpeed, rigidbody2D.velocity.y);
+				rigidbody2D.velocity = new Vector2(horizontal * MAXSPEED, rigidbody2D.velocity.y);
 			}
 		}
-
+		
 		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.RIGHT)
 		{
 			if(movement > 0 && !facingRight)
@@ -67,7 +92,7 @@ public class CharacterControllerScript: MonoBehaviour
 			else if (movement < 0 && facingRight)
 				Flip();
 		}
-
+		
 		if(gravity == gravityDirection.UP || gravity == gravityDirection.LEFT)
 		{
 			if(movement < 0 && !facingRight)
@@ -75,15 +100,6 @@ public class CharacterControllerScript: MonoBehaviour
 			else if (movement > 0 && facingRight)
 				Flip();
 		}
-	}
-
-	void FixedUpdate()
-	{
-		doGroundCheck ();
-
-		doMovement ();
-
-		rigidbody2D.AddForce (gravityVector);
 	}
 
 	void doJumpCheck()
@@ -112,6 +128,15 @@ public class CharacterControllerScript: MonoBehaviour
 
 			rigidbody2D.AddForce (jumpVector);
 		}
+	}
+
+	/*
+	 * Generally only called by outside GameObjects.
+	 */
+	public void hurt()
+	{
+		Debug.Log ("ouch!");
+		// TODO: implement this, make it reduce health by one and cause a hurt animation
 	}
 
 	public void RotateLeft () 
@@ -161,13 +186,7 @@ public class CharacterControllerScript: MonoBehaviour
 			}
 		}
 	}
-
-	void Update()
-	{
-		doJumpCheck ();
-		doWrapping ();
-	}
-	
+		
 	void Flip()
 	{
 		facingRight = !facingRight;
