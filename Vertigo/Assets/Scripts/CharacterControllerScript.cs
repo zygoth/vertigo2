@@ -7,6 +7,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
 	bool facingRight = true;	
+	bool hurtInvincibility = false;
 	Animator anim;
 	bool grounded = false;
 	public Transform groundCheck;
@@ -135,7 +136,13 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	public void hurt()
 	{
-		Debug.Log ("ouch!");
+		if (!hurtInvincibility)
+		{
+			Debug.Log ("ouch!");
+			anim.SetTrigger ("HurtTrigger");
+			hurtInvincibility = true;
+			//TODO: PUT A TIMER HERE, and become vulnerable again when it expires
+		}
 		// TODO: implement this, make it reduce health by one and cause a hurt animation
 	}
 
