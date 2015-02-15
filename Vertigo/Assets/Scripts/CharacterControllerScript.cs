@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CharacterControllerScript: MonoBehaviour
@@ -156,9 +156,30 @@ public class CharacterControllerScript: MonoBehaviour
 
 	public void switchGravity(gravityDirection newGravity)
 	{
-		while(gravity != newGravity)
+		/*float amount = -90 * (newGravity - gravity);
+		Debug.Log ("rotate " + amount);
+		transform.Rotate (0, 0, amount);*/ //this bit's broken somehow
+		transform.localEulerAngles = new Vector3(0,0, (int)newGravity * -90f);
+		print (transform.localEulerAngles.z);
+		gravity = newGravity;
+		switch (newGravity)
 		{
-			RotateLeft ();
+		case gravityDirection.DOWN:
+			gravityVector.x = 0f;
+			gravityVector.y = -30f; //FIXME: magic numbers
+			break;
+		case gravityDirection.LEFT:
+			gravityVector.x = -30f;
+			gravityVector.y = 0f;
+			break;
+		case gravityDirection.UP:
+			gravityVector.x = 0f;
+			gravityVector.y = 30f;
+			break;
+		case gravityDirection.RIGHT:
+			gravityVector.x = 30f;
+			gravityVector.y = 0f;
+			break;
 		}
 	}
 
