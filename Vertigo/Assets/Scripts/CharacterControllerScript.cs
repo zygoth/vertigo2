@@ -18,7 +18,6 @@ public class CharacterControllerScript: MonoBehaviour
 	public enum gravityDirection {DOWN, LEFT, UP, RIGHT};
 	// The current gravity direction
 	public gravityDirection gravity = gravityDirection.DOWN;
-
 	/*
 	 * Called when the object is instantiated (I think).
 	 */
@@ -136,12 +135,18 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	public void hurt()
 	{
+
 		if (!hurtInvincibility)
 		{
 			Debug.Log ("ouch!");
 			anim.SetTrigger ("HurtTrigger");
 			hurtInvincibility = true;
+			//Adjust health. Currently just subtracts 25 health
+			GameObject character = GameObject.Find ("Character");
+			PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
+			health.adjustCurHealth(-25);
 			//TODO: PUT A TIMER HERE, and become vulnerable again when it expires
+
 		}
 		// TODO: implement this, make it reduce health by one and cause a hurt animation
 	}
