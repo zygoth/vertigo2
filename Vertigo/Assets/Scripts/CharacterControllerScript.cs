@@ -8,6 +8,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
+	Timer hurtInvincibilityTimer = new Timer ();
 	Animator anim;
 	bool grounded = false;
 	public Transform groundCheck;
@@ -45,6 +46,15 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		doJumpCheck ();
 		doWrapping ();
+
+		if(hurtInvincibilityTimer.GetElapsedTimeSecs() > 3)
+		{
+			hurtInvincibilityTimer.Start ();
+			hurtInvincibilityTimer.Stop ();
+			hurtInvincibility = false;
+			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+			sr.color = new Color(1f,1f,1f,1f);
+		}
 	}
 
 	void doGroundCheck()
@@ -145,10 +155,11 @@ public class CharacterControllerScript: MonoBehaviour
 			GameObject character = GameObject.Find ("Character");
 			PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
 			health.adjustCurHealth(-25);
-			//TODO: PUT A TIMER HERE, and become vulnerable again when it expires
-
+			hurtInvincibilityTimer.Start ();
+			// set to partly transparent to indicate invincibility
+			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+			sr.color = new Color(1f,1f,1f,.5f);
 		}
-		// TODO: implement this, make it reduce health by one and cause a hurt animation
 	}
 
 	public void RotateLeft () 
