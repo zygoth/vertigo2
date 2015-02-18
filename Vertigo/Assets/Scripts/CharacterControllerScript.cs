@@ -32,10 +32,6 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void FixedUpdate()
 	{
-		doGroundCheck ();
-
-		doMovement ();
-
 		rigidbody2D.AddForce (gravityVector);
 	}
 
@@ -46,6 +42,8 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		doJumpCheck ();
 		doWrapping ();
+		doMovement ();
+		doGroundCheck ();
 
 		if(hurtInvincibilityTimer.GetElapsedTimeSecs() > 3)
 		{
