@@ -9,7 +9,7 @@ public class VerticalScrollingBlock : MonoBehaviour
 {
 	public float topStoppingPoint;
 	public float bottomStoppingPoint;
-	public float snapHeight;
+	public float startX;
 
 	// Use this for initialization
 	void Start () {
@@ -20,12 +20,12 @@ public class VerticalScrollingBlock : MonoBehaviour
 	{
 		GameObject character = GameObject.Find ("Main Camera");
 		CameraController script = (CameraController) character.GetComponent ("CameraController");
-		script.setVertical (snapHeight, topStoppingPoint, bottomStoppingPoint);
+		script.setVertical (startX, topStoppingPoint, bottomStoppingPoint);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		
 	}
 }
