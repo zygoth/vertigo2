@@ -12,7 +12,7 @@ public class VerticalScrollingBlock : MonoBehaviour {
 	{
 		GameObject character = GameObject.Find ("Main Camera");
 		CameraController script = (CameraController) character.GetComponent ("CameraController");
-		script.setOrientation (CameraController.ScreenMode.VERTICAL);
+		script.setVertical (4f, 20f, -20f);
 	}
 	
 	// Update is called once per frame

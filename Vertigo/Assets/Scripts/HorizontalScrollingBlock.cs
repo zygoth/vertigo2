@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HorizontalScrollingBlock : MonoBehaviour {
+public class HorizontalScrollingBlock : MonoBehaviour 
+{
+	public float rightStoppingPoint;
+	public float leftStoppingPoint;
+	public float snapHeight;
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +16,7 @@ public class HorizontalScrollingBlock : MonoBehaviour {
 	{
 		GameObject character = GameObject.Find ("Main Camera");
 		CameraController script = (CameraController) character.GetComponent ("CameraController");
-		script.setOrientation (CameraController.ScreenMode.HORIZONTAL);
+		script.setHorizontal (snapHeight, leftStoppingPoint, rightStoppingPoint);
 	}
 
 	// Update is called once per frame
