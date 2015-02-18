@@ -45,6 +45,12 @@ public class CharacterControllerScript: MonoBehaviour
 		doMovement ();
 		doGroundCheck ();
 
+		if (transform.localEulerAngles.z % 90 > .1) // TODO: this is a hack to fix the strange rotation bug.  It slows things down though, like the check is failing every time
+													// when gravity is facing up.
+		{
+			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
+		}
+
 		if(hurtInvincibilityTimer.GetElapsedTimeSecs() > 3)
 		{
 			hurtInvincibilityTimer.Start ();
@@ -146,8 +152,7 @@ public class CharacterControllerScript: MonoBehaviour
 
 		if (!hurtInvincibility)
 		{
-			Debug.Log ("ouch!");
-			anim.SetTrigger ("HurtTrigger");
+			anim.SetTrigger ("HurtTrigger"); // cause hurt animation
 			hurtInvincibility = true;
 			//Adjust health. Currently just subtracts 25 health
 			GameObject character = GameObject.Find ("Character");
@@ -174,7 +179,7 @@ public class CharacterControllerScript: MonoBehaviour
 		Debug.Log ("rotate " + amount);
 		transform.Rotate (0, 0, amount);*/ //this bit's broken somehow
 		transform.localEulerAngles = new Vector3(0,0, (int)newGravity * -90f);
-		print (transform.localEulerAngles.z);
+		Debug.Log (transform.localEulerAngles.z);
 		gravity = newGravity;
 		switch (newGravity)
 		{
