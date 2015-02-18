@@ -158,7 +158,7 @@ public class CharacterControllerScript: MonoBehaviour
 			hurtInvincibilityTimer.Start ();
 			// set to partly transparent to indicate invincibility
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-			sr.color = new Color(1f,1f,1f,.5f);
+			sr.color = new Color(1f,1f,1f,.6f);
 		}
 	}
 
