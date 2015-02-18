@@ -28,13 +28,15 @@ public class CameraController : MonoBehaviour
 	public void setHorizontal(float centerY, float leftWall, float rightWall)
 	{
 		currentMode = ScreenMode.HORIZONTAL;
+		transform.position = new Vector3 (transform.position.x, centerY, transform.position.z);
 		this.leftWall = leftWall;
 		this.rightWall = rightWall;
 	}
 
-	public void setVertical(float centerY, float topWall, float bottomWall)
+	public void setVertical(float centerX, float topWall, float bottomWall)
 	{
 		currentMode = ScreenMode.VERTICAL;
+		transform.position = new Vector3 (centerX, transform.position.y, transform.position.z);
 		this.topWall = topWall;
 		this.bottomWall = bottomWall;
 	}
