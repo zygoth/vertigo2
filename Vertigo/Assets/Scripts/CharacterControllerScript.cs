@@ -44,10 +44,10 @@ public class CharacterControllerScript: MonoBehaviour
 		doWrapping ();
 		doMovement ();
 		doGroundCheck ();
-
-		if (transform.localEulerAngles.z % 90 > .1) // TODO: this is a hack to fix the strange rotation bug.  It slows things down though, like the check is failing every time
-													// when gravity is facing up.
+		
+		if (Mathf.Round(transform.localEulerAngles.z) % 90f > 1) // TODO: this is a hack to fix the strange rotation bug.
 		{
+			Debug.Log ("craps + " + transform.localEulerAngles.z % 90);
 			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
 		}
 
@@ -191,11 +191,13 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			anim.SetTrigger ("HurtTrigger"); // cause hurt animation
 			hurtInvincibility = true;
+
 			//Adjust health. Currently just subtracts 25 health
 			GameObject character = GameObject.Find ("Character");
 			PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
 			health.adjustCurHealth(-25);
 			hurtInvincibilityTimer.Start ();
+
 			// set to partly transparent to indicate invincibility
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 			sr.color = new Color(1f,1f,1f,.6f);
@@ -244,7 +246,7 @@ public class CharacterControllerScript: MonoBehaviour
 		GameObject camera = GameObject.Find ("Main Camera");
 		CameraController cameraScript = (CameraController) camera.GetComponent ("CameraController");
 
-		if (cameraScript.currentMode == CameraController.ScreenMode.HORIZONTAL)
+		//if (cameraScript.currentMode == CameraController.ScreenMode.HORIZONTAL)
 		{
 			if(transform.position.y < cameraScript.transform.position.y - 13)
 			{
@@ -256,8 +258,8 @@ public class CharacterControllerScript: MonoBehaviour
 				transform.position = new Vector3 (transform.position.x, cameraScript.transform.position.y - 13, transform.position.z);
 			}
 		}
-		else
-		if(cameraScript.currentMode == CameraController.ScreenMode.VERTICAL)
+		//else
+		//if(cameraScript.currentMode == CameraController.ScreenMode.VERTICAL)
 		{
 			if(transform.position.x < cameraScript.transform.position.x - 17)
 			{
