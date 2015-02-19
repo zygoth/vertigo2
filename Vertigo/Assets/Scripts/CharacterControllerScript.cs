@@ -66,6 +66,39 @@ public class CharacterControllerScript: MonoBehaviour
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("Ground", grounded);
 	}
+
+	bool isHorizontal(gravityDirection direction)
+	{
+		if(direction == gravityDirection.LEFT || direction == gravityDirection.RIGHT)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool isVertical(gravityDirection direction)
+	{
+		if(direction == gravityDirection.UP || direction == gravityDirection.DOWN)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+
+	void stopSliding()
+	{
+		if(isVertical (gravity))
+		{
+			rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
+		}
+
+		if(isHorizontal (gravity))
+		{
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+		}
+	}
 	
 	void doMovement()
 	{
@@ -73,6 +106,8 @@ public class CharacterControllerScript: MonoBehaviour
 		float vertical = Input.GetAxis ("Vertical");
 		
 		float movement;
+
+		stopSliding ();
 		
 		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.UP)
 		{
@@ -98,6 +133,8 @@ public class CharacterControllerScript: MonoBehaviour
 				rigidbody2D.velocity = new Vector2(horizontal * MAXSPEED, rigidbody2D.velocity.y);
 			}
 		}
+
+		// Set the animation to face the correct direction (could possibly be moved into the state machine?)
 		
 		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.RIGHT)
 		{
