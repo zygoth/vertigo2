@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CharacterControllerScript: MonoBehaviour
@@ -8,6 +8,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
+	Timer hurtInvincibilityTimer = new Timer ();
 	Animator anim;
 	bool grounded = false;
 	public Transform groundCheck;
@@ -18,7 +19,6 @@ public class CharacterControllerScript: MonoBehaviour
 	public enum gravityDirection {DOWN, LEFT, UP, RIGHT};
 	// The current gravity direction
 	public gravityDirection gravity = gravityDirection.DOWN;
-
 	/*
 	 * Called when the object is instantiated (I think).
 	 */
@@ -32,10 +32,6 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void FixedUpdate()
 	{
-		doGroundCheck ();
-
-		doMovement ();
-
 		rigidbody2D.AddForce (gravityVector);
 	}
 
@@ -46,12 +42,62 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		doJumpCheck ();
 		doWrapping ();
+		doMovement ();
+		doGroundCheck ();
+		
+		if (Mathf.Round(transform.localEulerAngles.z) % 90f > 1) // TODO: this is a hack to fix the strange rotation bug.
+		{
+			Debug.Log ("craps + " + transform.localEulerAngles.z % 90);
+			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
+		}
+
+		if(hurtInvincibilityTimer.GetElapsedTimeSecs() > 3)
+		{
+			hurtInvincibilityTimer.Start ();
+			hurtInvincibilityTimer.Stop ();
+			hurtInvincibility = false;
+			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+			sr.color = new Color(1f,1f,1f,1f);
+		}
 	}
 
 	void doGroundCheck()
 	{
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("Ground", grounded);
+	}
+
+	bool isHorizontal(gravityDirection direction)
+	{
+		if(direction == gravityDirection.LEFT || direction == gravityDirection.RIGHT)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool isVertical(gravityDirection direction)
+	{
+		if(direction == gravityDirection.UP || direction == gravityDirection.DOWN)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+
+	void stopSliding()
+	{
+		if(isVertical (gravity))
+		{
+			rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
+		}
+
+		if(isHorizontal (gravity))
+		{
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+		}
 	}
 	
 	void doMovement()
@@ -60,6 +106,8 @@ public class CharacterControllerScript: MonoBehaviour
 		float vertical = Input.GetAxis ("Vertical");
 		
 		float movement;
+
+		stopSliding ();
 		
 		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.UP)
 		{
@@ -78,13 +126,17 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			if(horizontal == 0)
 			{
+				//rigidbody2D.AddForce (new Vector3(500f, 0, 0));
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, vertical * MAXSPEED);
 			}
 			else
 			{
+				//rigidbody2D.AddForce (new Vector3(horizontal * 600f, 0, 0));
 				rigidbody2D.velocity = new Vector2(horizontal * MAXSPEED, rigidbody2D.velocity.y);
 			}
 		}
+
+		// Set the animation to face the correct direction (could possibly be moved into the state machine?)
 		
 		if(gravity == gravityDirection.DOWN || gravity == gravityDirection.RIGHT)
 		{
@@ -136,14 +188,22 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	public void hurt()
 	{
+
 		if (!hurtInvincibility)
 		{
-			Debug.Log ("ouch!");
-			anim.SetTrigger ("HurtTrigger");
+			anim.SetTrigger ("HurtTrigger"); // cause hurt animation
 			hurtInvincibility = true;
-			//TODO: PUT A TIMER HERE, and become vulnerable again when it expires
+
+			//Adjust health. Currently just subtracts 25 health
+			GameObject character = GameObject.Find ("Character");
+			PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
+			health.adjustCurHealth(-25);
+			hurtInvincibilityTimer.Start ();
+
+			// set to partly transparent to indicate invincibility
+			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+			sr.color = new Color(1f,1f,1f,.6f);
 		}
-		// TODO: implement this, make it reduce health by one and cause a hurt animation
 	}
 
 	public void RotateLeft () 
@@ -156,9 +216,30 @@ public class CharacterControllerScript: MonoBehaviour
 
 	public void switchGravity(gravityDirection newGravity)
 	{
-		while(gravity != newGravity)
+		/*float amount = -90 * (newGravity - gravity);
+		Debug.Log ("rotate " + amount);
+		transform.Rotate (0, 0, amount);*/ //this bit's broken somehow
+		transform.localEulerAngles = new Vector3(0,0, (int)newGravity * -90f);
+		Debug.Log (transform.localEulerAngles.z);
+		gravity = newGravity;
+		switch (newGravity)
 		{
-			RotateLeft ();
+		case gravityDirection.DOWN:
+			gravityVector.x = 0f;
+			gravityVector.y = -30f; //FIXME: magic numbers
+			break;
+		case gravityDirection.LEFT:
+			gravityVector.x = -30f;
+			gravityVector.y = 0f;
+			break;
+		case gravityDirection.UP:
+			gravityVector.x = 0f;
+			gravityVector.y = 30f;
+			break;
+		case gravityDirection.RIGHT:
+			gravityVector.x = 30f;
+			gravityVector.y = 0f;
+			break;
 		}
 	}
 
@@ -167,7 +248,7 @@ public class CharacterControllerScript: MonoBehaviour
 		GameObject camera = GameObject.Find ("Main Camera");
 		CameraController cameraScript = (CameraController) camera.GetComponent ("CameraController");
 
-		if (cameraScript.currentMode == CameraController.ScreenMode.HORIZONTAL)
+		//if (cameraScript.currentMode == CameraController.ScreenMode.HORIZONTAL)
 		{
 			if(transform.position.y < cameraScript.transform.position.y - 13)
 			{
@@ -179,8 +260,8 @@ public class CharacterControllerScript: MonoBehaviour
 				transform.position = new Vector3 (transform.position.x, cameraScript.transform.position.y - 13, transform.position.z);
 			}
 		}
-		else
-		if(cameraScript.currentMode == CameraController.ScreenMode.VERTICAL)
+		//else
+		//if(cameraScript.currentMode == CameraController.ScreenMode.VERTICAL)
 		{
 			if(transform.position.x < cameraScript.transform.position.x - 17)
 			{
