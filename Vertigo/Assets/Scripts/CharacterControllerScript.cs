@@ -6,6 +6,7 @@ public class CharacterControllerScript: MonoBehaviour
 	// Maximum run speed
 	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
+	public bool key = false;
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
 	Timer hurtInvincibilityTimer = new Timer ();
@@ -204,6 +205,10 @@ public class CharacterControllerScript: MonoBehaviour
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 			sr.color = new Color(1f,1f,1f,.6f);
 		}
+	}
+
+	public void setKey(bool hasKey){
+		key = hasKey;
 	}
 
 	public void RotateLeft () 
