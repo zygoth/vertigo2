@@ -7,6 +7,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
 	public bool key = false;
+	private float MAXFALLSPEED = 50;
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
 	Timer hurtInvincibilityTimer = new Timer ();
@@ -33,7 +34,11 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void FixedUpdate()
 	{
-		rigidbody2D.AddForce (gravityVector);
+		if(isVertical (gravity) && Mathf.Abs (rigidbody2D.velocity.y) < MAXFALLSPEED || 
+		   isHorizontal(gravity) && Mathf.Abs (rigidbody2D.velocity.x) < MAXFALLSPEED)
+		{
+			rigidbody2D.AddForce (gravityVector);
+		}
 	}
 
 	/*
@@ -51,9 +56,14 @@ public class CharacterControllerScript: MonoBehaviour
 			Debug.Log ("craps + " + transform.localEulerAngles.z % 90);
 			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
 		}
+	}
 
-		if(hurtInvincibilityTimer.GetElapsedTimeSecs() > 3)
+	private IEnumerator removeHurtInvincibility()
+	{
+		while(true)
 		{
+			yield return new WaitForSeconds(3.0f); // wait half a second
+			// do things
 			hurtInvincibilityTimer.Start ();
 			hurtInvincibilityTimer.Stop ();
 			hurtInvincibility = false;
@@ -199,8 +209,8 @@ public class CharacterControllerScript: MonoBehaviour
 			GameObject character = GameObject.Find ("Character");
 			PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
 			health.adjustCurHealth(-25);
-			hurtInvincibilityTimer.Start ();
-
+			//hurtInvincibilityTimer.Start ();
+			StartCoroutine("removeHurtInvincibility");
 			// set to partly transparent to indicate invincibility
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 			sr.color = new Color(1f,1f,1f,.6f);
