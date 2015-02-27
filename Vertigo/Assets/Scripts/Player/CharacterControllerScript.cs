@@ -10,7 +10,6 @@ public class CharacterControllerScript: MonoBehaviour
 	private float MAXFALLSPEED = 50;
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
-	Timer hurtInvincibilityTimer = new Timer ();
 	Animator anim;
 	bool grounded = false;
 	public Transform groundCheck;
@@ -64,8 +63,6 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			yield return new WaitForSeconds(3.0f); // wait half a second
 			// do things
-			hurtInvincibilityTimer.Start ();
-			hurtInvincibilityTimer.Stop ();
 			hurtInvincibility = false;
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 			sr.color = new Color(1f,1f,1f,1f);
