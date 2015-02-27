@@ -168,7 +168,7 @@ public class CharacterControllerScript: MonoBehaviour
 
 	void doJumpCheck()
 	{
-		if (grounded && Input.GetKeyDown(KeyCode.Space))
+		if (grounded && Input.GetButtonDown("Jump"))
 		{
 			anim.SetBool ("Ground", false);
 
