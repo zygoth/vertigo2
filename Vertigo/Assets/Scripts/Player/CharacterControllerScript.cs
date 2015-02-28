@@ -16,6 +16,7 @@ public class CharacterControllerScript: MonoBehaviour
 	float groundRadius = 0.2f;
 	public LayerMask whatIsGround;
 	public float JUMPFORCE = 800f;
+	private string levelToLoad;
 	// Enum for gravity direction
 	public enum gravityDirection {DOWN, LEFT, UP, RIGHT};
 	// The current gravity direction
@@ -25,6 +26,7 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void Start()
 	{
+		levelToLoad = Application.loadedLevelName;
 		anim = GetComponent<Animator>();
 	}
 
@@ -212,6 +214,32 @@ public class CharacterControllerScript: MonoBehaviour
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 			sr.color = new Color(1f,1f,1f,.6f);
 		}
+	}
+
+	/*
+	 * Called when the character hits a level end block
+	 */
+	public void endLevel(string nextLevel)
+	{
+		levelToLoad = nextLevel;
+		die ();
+	}
+
+	/*
+	 * Called when the player should die
+	 */
+	private void die()
+	{
+		anim.SetTrigger ("DieTrigger");
+	}
+
+	/*
+	 * Loads the next level.
+	 * Should only be called by the event at the end of the dying animation.
+	 */
+	public void loadNextLevel()
+	{
+		Application.LoadLevel (levelToLoad);
 	}
 
 	public void setKey(bool hasKey){

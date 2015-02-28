@@ -14,17 +14,9 @@ public class EndBlockScript : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		StartCoroutine ("loadNewLevel");
-	}
-
-	private IEnumerator loadNewLevel()
-	{
-		while(true)
-		{
-			yield return new WaitForSeconds(0.5f); // wait half a second
-			// do things
-			Application.LoadLevel (levelToLoad);
-		}
+		GameObject character = GameObject.Find ("Character");
+		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
+		script.endLevel (levelToLoad);
 	}
 	
 	// Update is called once per frame
