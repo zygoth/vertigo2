@@ -97,6 +97,64 @@ public class CharacterControllerScript: MonoBehaviour
 		return false;
 	}
 
+	/*
+	 * Returns the direction the character is facing.  Needed by Shots to know which way they should
+	 * fly.
+	 */
+	public gravityDirection getFacingDirection()
+	{
+		if (gravity == gravityDirection.DOWN)
+		{
+			if (transform.localScale.x < 0) 
+			{
+				return gravityDirection.LEFT;
+			}
+			else
+			{
+				return gravityDirection.RIGHT;
+			}
+		}
+		else if (gravity == gravityDirection.RIGHT)
+		{
+			if (transform.localScale.x < 0) 
+			{
+				return gravityDirection.LEFT;
+			}
+			else
+			{
+				return gravityDirection.RIGHT;
+			}
+		}
+		else if (gravity == gravityDirection.LEFT)
+		{
+			if (transform.localScale.x > 0) 
+			{
+				return gravityDirection.LEFT;
+			}
+			else
+			{
+				return gravityDirection.RIGHT;
+			}
+		}
+		else if (gravity == gravityDirection.UP)
+		{
+			if (transform.localScale.x > 0) 
+			{
+				return gravityDirection.LEFT;
+			}
+			else
+			{
+				return gravityDirection.RIGHT;
+			}
+		}
+
+		throw new System.InvalidOperationException("Bad news in the getFacingDirection function");
+	}
+
+	/*
+	 * Since our collider is made of frictionless material, we have to stop momentum
+	 * when we are not holding down a key.
+	 */
 	void stopSliding()
 	{
 		if(isVertical (gravity))
@@ -136,12 +194,10 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			if(horizontal == 0)
 			{
-				//rigidbody2D.AddForce (new Vector3(500f, 0, 0));
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, vertical * MAXSPEED);
 			}
 			else
 			{
-				//rigidbody2D.AddForce (new Vector3(horizontal * 600f, 0, 0));
 				rigidbody2D.velocity = new Vector2(horizontal * MAXSPEED, rigidbody2D.velocity.y);
 			}
 		}
