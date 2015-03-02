@@ -11,9 +11,9 @@ public class SpikeScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.hurt ();
+		//GameObject character = GameObject.Find ("Character");
+		//CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
+		//script.hurt ();
 	}
 
 	void OnTriggerStay2D(Collider2D other)
