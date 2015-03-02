@@ -226,11 +226,13 @@ public class CharacterControllerScript: MonoBehaviour
 	}
 
 	/*
-	 * Called when the player should die
+	 * Called when the player should die.  This can happen either by losing all health
+	 * or by ending the level by hitting a level end block.
 	 */
 	private void die()
 	{
 		anim.SetTrigger ("DieTrigger");
+		disableMovement ();
 	}
 
 	/*
@@ -240,6 +242,15 @@ public class CharacterControllerScript: MonoBehaviour
 	public void loadNextLevel()
 	{
 		Application.LoadLevel (levelToLoad);
+	}
+
+	/*
+	 * Disables player input and cancels velocity & gravity.  
+	 */
+	private void disableMovement()
+	{
+		rigidbody2D.isKinematic = true;
+		this.enabled = false;
 	}
 
 	public void setKey(bool hasKey){
