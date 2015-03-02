@@ -59,6 +59,17 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
+	private void doShootCheck()
+	{
+		if(Input.GetButtonDown("Fire1"))
+		{
+			//TODO: finish this
+		}
+	}
+
+	/*
+	 * Coroutine, called to remove invincibility after 3 seconds when hit.
+	 */
 	private IEnumerator removeHurtInvincibility()
 	{
 		while(true)
