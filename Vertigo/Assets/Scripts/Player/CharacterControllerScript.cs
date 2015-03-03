@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CharacterControllerScript: MonoBehaviour
 {
+	// used to create shots when firing
+	public Transform shotPrefab;
 	// Maximum run speed
 	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
@@ -51,6 +53,7 @@ public class CharacterControllerScript: MonoBehaviour
 		doWrapping ();
 		doMovement ();
 		doGroundCheck ();
+		doShootCheck ();
 		
 		if (Mathf.Round(transform.localEulerAngles.z) % 90f > 1) // TODO: this is a hack to fix the strange rotation bug.
 		{
@@ -63,7 +66,27 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		if(Input.GetButtonDown("Fire1"))
 		{
+			Debug.Log ("fire button pressed");
 			//TODO: finish this
+			gravityDirection facingDirection = getFacingDirection();
+
+			switch(facingDirection)
+			{
+			case gravityDirection.DOWN:
+				//Instantiate (shotPrefab, transform.position, Quaternion.identity);
+				Debug.Log ("fire down");
+				break;
+			case gravityDirection.LEFT:
+				//Instantiate (shotPrefab, transform.position, Quaternion.identity);
+				Debug.Log ("fire left");
+				break;
+			case gravityDirection.RIGHT:
+				Debug.Log ("fire right");
+				break;
+			case gravityDirection.UP:
+				Debug.Log ("fire up");
+				break;
+			}
 		}
 	}
 
@@ -129,22 +152,22 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			if (transform.localScale.x < 0) 
 			{
-				return gravityDirection.LEFT;
+				return gravityDirection.DOWN;
 			}
 			else
 			{
-				return gravityDirection.RIGHT;
+				return gravityDirection.UP;
 			}
 		}
 		else if (gravity == gravityDirection.LEFT)
 		{
 			if (transform.localScale.x > 0) 
 			{
-				return gravityDirection.LEFT;
+				return gravityDirection.DOWN;
 			}
 			else
 			{
-				return gravityDirection.RIGHT;
+				return gravityDirection.UP;
 			}
 		}
 		else if (gravity == gravityDirection.UP)
