@@ -66,7 +66,6 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		if(Input.GetButtonDown("Fire1"))
 		{
-			Debug.Log ("fire button pressed");
 			//TODO: finish this
 			gravityDirection facingDirection = getFacingDirection();
 
