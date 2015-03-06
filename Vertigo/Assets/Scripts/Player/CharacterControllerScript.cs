@@ -4,7 +4,8 @@ using System.Collections;
 public class CharacterControllerScript: MonoBehaviour
 {
 	// used to create shots when firing
-	public Transform shotPrefab;
+	public GameObject shotPrefab;
+	private float SHOTSPEED = 10f;
 	// Maximum run speed
 	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
@@ -68,24 +69,32 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			//TODO: finish this
 			gravityDirection facingDirection = getFacingDirection();
+			Vector3 shotPosition = transform.position;
+			Vector2 shotVelocity = new Vector2(0f,0f);
 
 			switch(facingDirection)
 			{
 			case gravityDirection.DOWN:
-				//Instantiate (shotPrefab, transform.position, Quaternion.identity);
-				Debug.Log ("fire down");
+				shotPosition = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+				shotVelocity = new Vector2(0f, -SHOTSPEED);
 				break;
 			case gravityDirection.LEFT:
-				//Instantiate (shotPrefab, transform.position, Quaternion.identity);
-				Debug.Log ("fire left");
+				shotPosition = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+				shotVelocity = new Vector2(-SHOTSPEED, 0f);
 				break;
 			case gravityDirection.RIGHT:
-				Debug.Log ("fire right");
+				shotPosition = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+				shotVelocity = new Vector2(SHOTSPEED, 0f);
 				break;
 			case gravityDirection.UP:
-				Debug.Log ("fire up");
+				shotPosition = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+				shotVelocity = new Vector2(0f, SHOTSPEED);
 				break;
 			}
+
+			GameObject shot = Instantiate (shotPrefab, shotPosition, Quaternion.identity) as GameObject;
+			Shot script = (Shot)shot.GetComponent ("Shot");
+			script.rigidbody2D.velocity = shotVelocity;
 		}
 	}
 
@@ -360,7 +369,6 @@ public class CharacterControllerScript: MonoBehaviour
 		Debug.Log ("rotate " + amount);
 		transform.Rotate (0, 0, amount);*/ //this bit's broken somehow
 		transform.localEulerAngles = new Vector3(0,0, (int)newGravity * -90f);
-		Debug.Log (transform.localEulerAngles.z);
 		gravity = newGravity;
 		switch (newGravity)
 		{

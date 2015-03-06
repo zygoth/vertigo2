@@ -7,13 +7,12 @@ public class Shot : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		switch (script.gravity)
-		{
-			case (CharacterControllerScript.gravityDirection.DOWN):
-			return;
-		}
+
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+
 	}
 
 	// Update is called once per frame

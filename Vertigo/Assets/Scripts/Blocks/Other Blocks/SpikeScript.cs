@@ -18,9 +18,12 @@ public class SpikeScript : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.hurt ();
+		if(other.name == "Character")
+		{
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
+			script.hurt ();
+		}
 	}
 	
 	// Update is called once per frame
