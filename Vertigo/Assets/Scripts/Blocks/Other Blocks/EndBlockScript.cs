@@ -14,9 +14,12 @@ public class EndBlockScript : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.endLevel (levelToLoad);
+		if (other.name == "Character") 
+		{
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
+			script.endLevel (levelToLoad);
+		}
 	}
 	
 	// Update is called once per frame

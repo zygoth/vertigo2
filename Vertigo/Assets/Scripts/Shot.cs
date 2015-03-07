@@ -10,9 +10,14 @@ public class Shot : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
+		Debug.Log ("collided with a block!");
+		if(other.gameObject.layer == 0) // default layer, so it's a collidable block
+		{
 
+			Destroy (gameObject);
+		}
 	}
 
 	// Update is called once per frame

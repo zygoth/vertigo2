@@ -18,9 +18,12 @@ public class HorizontalScrollingBlock : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Main Camera");
-		CameraController script = (CameraController) character.GetComponent ("CameraController");
-		script.setHorizontal (snapHeight, leftStoppingPoint, rightStoppingPoint);
+		if (other.name == "Character") 
+		{
+			GameObject character = GameObject.Find ("Main Camera");
+			CameraController script = (CameraController)character.GetComponent ("CameraController");
+			script.setHorizontal (snapHeight, leftStoppingPoint, rightStoppingPoint);
+		}
 	}
 
 	// Update is called once per frame

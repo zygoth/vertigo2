@@ -10,9 +10,12 @@ public class DownGravityBlock : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.switchGravity (CharacterControllerScript.gravityDirection.DOWN);
+		if(other.name == "Character")
+		{
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
+			script.switchGravity (CharacterControllerScript.gravityDirection.DOWN);
+		}
 	}
 	
 	// Update is called once per frame

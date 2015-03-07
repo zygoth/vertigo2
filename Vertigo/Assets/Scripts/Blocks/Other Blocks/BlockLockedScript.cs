@@ -11,10 +11,13 @@ public class BlockLockedScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		if (script.key) {
-			Component.Destroy(gameObject);
+		if (other.name == "Character") 
+		{
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
+			if (script.key) {
+				Component.Destroy (gameObject);
+			}
 		}
 	}
 

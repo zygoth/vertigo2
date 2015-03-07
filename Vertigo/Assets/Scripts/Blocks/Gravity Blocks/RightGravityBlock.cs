@@ -10,9 +10,12 @@ public class RightGravityBlock : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.switchGravity (CharacterControllerScript.gravityDirection.RIGHT);
+		if(other.name == "Character")
+		{
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
+			script.switchGravity (CharacterControllerScript.gravityDirection.RIGHT);
+		}
 	}
 	
 	// Update is called once per frame

@@ -10,7 +10,6 @@ public class BreakableBlock : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		Debug.Log ("collided with " + collision.collider.name);
 		if (collision.collider.name == "Shot") 
 		{
 			Destroy (gameObject);

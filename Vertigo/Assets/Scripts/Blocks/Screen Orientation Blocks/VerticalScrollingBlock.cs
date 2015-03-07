@@ -18,9 +18,11 @@ public class VerticalScrollingBlock : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Main Camera");
-		CameraController script = (CameraController) character.GetComponent ("CameraController");
-		script.setVertical (startX, topStoppingPoint, bottomStoppingPoint);
+		if (other.name == "Character") {
+			GameObject character = GameObject.Find ("Main Camera");
+			CameraController script = (CameraController)character.GetComponent ("CameraController");
+			script.setVertical (startX, topStoppingPoint, bottomStoppingPoint);
+		}
 	}
 	
 	// Update is called once per frame
