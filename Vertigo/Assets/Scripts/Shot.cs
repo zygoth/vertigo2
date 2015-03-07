@@ -15,6 +15,7 @@ public class Shot : MonoBehaviour {
 	{
 		if(other.name == "Breakable Block")
 		{
+			Instantiate (explosionPrefab, other.transform.position, Quaternion.identity);
 			Destroy (other.gameObject);
 		}
 		if(other.gameObject.layer == 0) // default layer, so it's a collidable block
