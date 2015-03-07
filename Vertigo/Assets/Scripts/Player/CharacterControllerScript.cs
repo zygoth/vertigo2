@@ -6,6 +6,8 @@ public class CharacterControllerScript: MonoBehaviour
 	// used to create shots when firing
 	public GameObject shotPrefab;
 	private float SHOTSPEED = 10f;
+	private float SHOTVERTICALDIST = .4f;
+	private float SHOTHORIZONTALDIST = 1f;
 	// Maximum run speed
 	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
@@ -75,19 +77,19 @@ public class CharacterControllerScript: MonoBehaviour
 			switch(facingDirection)
 			{
 			case gravityDirection.DOWN:
-				shotPosition = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+				shotPosition = new Vector3(transform.position.x - SHOTVERTICALDIST, transform.position.y - SHOTHORIZONTALDIST, transform.position.z);
 				shotVelocity = new Vector2(0f, -SHOTSPEED);
 				break;
 			case gravityDirection.LEFT:
-				shotPosition = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+				shotPosition = new Vector3(transform.position.x - SHOTHORIZONTALDIST, transform.position.y - SHOTVERTICALDIST, transform.position.z);
 				shotVelocity = new Vector2(-SHOTSPEED, 0f);
 				break;
 			case gravityDirection.RIGHT:
-				shotPosition = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+				shotPosition = new Vector3(transform.position.x + SHOTHORIZONTALDIST, transform.position.y - SHOTVERTICALDIST, transform.position.z);
 				shotVelocity = new Vector2(SHOTSPEED, 0f);
 				break;
 			case gravityDirection.UP:
-				shotPosition = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+				shotPosition = new Vector3(transform.position.x - SHOTVERTICALDIST, transform.position.y + SHOTHORIZONTALDIST, transform.position.z);
 				shotVelocity = new Vector2(0f, SHOTSPEED);
 				break;
 			}
@@ -95,6 +97,15 @@ public class CharacterControllerScript: MonoBehaviour
 			GameObject shot = Instantiate (shotPrefab, shotPosition, Quaternion.identity) as GameObject;
 			Shot script = (Shot)shot.GetComponent ("Shot");
 			script.rigidbody2D.velocity = shotVelocity;
+		}
+
+		if (Input.GetButton("Fire1"))
+		{
+			anim.SetBool("Shooting", true);
+		}
+		else
+		{
+			anim.SetBool("Shooting", false);
 		}
 	}
 
@@ -105,7 +116,7 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		while(true)
 		{
-			yield return new WaitForSeconds(3.0f); // wait half a second
+			yield return new WaitForSeconds(3.0f); // wait 3 seconds
 			// do things
 			hurtInvincibility = false;
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
