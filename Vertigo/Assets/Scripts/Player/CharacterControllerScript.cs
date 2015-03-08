@@ -317,11 +317,16 @@ public class CharacterControllerScript: MonoBehaviour
 			GameObject character = GameObject.Find ("Character");
 			PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
 			health.adjustCurHealth(-25);
-			//hurtInvincibilityTimer.Start ();
-			StartCoroutine("removeHurtInvincibility");
-			// set to partly transparent to indicate invincibility
-			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-			sr.color = new Color(1f,1f,1f,.6f);
+			if(health.curHealth <= 0){
+				die ();
+			}
+			else{
+				//hurtInvincibilityTimer.Start ();
+				StartCoroutine("removeHurtInvincibility");
+				// set to partly transparent to indicate invincibility
+				SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+				sr.color = new Color(1f,1f,1f,.6f);
+			}
 		}
 	}
 
