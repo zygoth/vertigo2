@@ -330,6 +330,13 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
+	public void heal()
+	{
+		GameObject character = GameObject.Find ("Character");
+		PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
+		health.adjustCurHealth(25);
+	}
+
 	/*
 	 * Called when the character hits a level end block
 	 */
