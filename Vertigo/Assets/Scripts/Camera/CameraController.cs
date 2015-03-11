@@ -84,13 +84,13 @@ public class CameraController : MonoBehaviour
 		return newY;
 	}
 
-	void FixedUpdate () 
+	void Update () 
 	{
 		GameObject character = GameObject.Find ("Character");
 		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
 
-		float newX = script.transform.position.x;
-		float newY = script.transform.position.y;
+		float newX = (transform.position.x + script.transform.position.x) / 2;
+		float newY = (transform.position.y + script.transform.position.y) / 2;
 		float newZ = script.transform.position.z;
 
 		if (currentMode == ScreenMode.HORIZONTAL) 
