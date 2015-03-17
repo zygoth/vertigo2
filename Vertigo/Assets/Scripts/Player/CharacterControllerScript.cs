@@ -368,10 +368,16 @@ public class CharacterControllerScript: MonoBehaviour
 	/*
 	 * Disables player input and cancels velocity & gravity.  
 	 */
-	private void disableMovement()
+	public void disableMovement()
 	{
 		rigidbody2D.isKinematic = true;
 		this.enabled = false;
+	}
+
+	public void enableMovement()
+	{
+		rigidbody2D.isKinematic = false;
+		this.enabled = true;
 	}
 
 	public void setKey(bool hasKey){
