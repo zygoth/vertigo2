@@ -69,32 +69,53 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		if(Input.GetButtonDown("Fire1"))
 		{
+			float shotXOffset = 0f;
+			float shotYOffset = 0f;
+
 			//TODO: finish this
 			gravityDirection facingDirection = getFacingDirection();
-			Vector3 shotPosition = transform.position;
 			Vector2 shotVelocity = new Vector2(0f,0f);
 
+			// calculate horizontal distance and velocity based on direction character is facing
 			switch(facingDirection)
 			{
 			case gravityDirection.DOWN:
-				shotPosition = new Vector3(transform.position.x - SHOTVERTICALDIST, transform.position.y - SHOTHORIZONTALDIST, transform.position.z);
+				shotYOffset = -SHOTHORIZONTALDIST;
 				shotVelocity = new Vector2(0f, -SHOTSPEED);
 				break;
 			case gravityDirection.LEFT:
-				shotPosition = new Vector3(transform.position.x - SHOTHORIZONTALDIST, transform.position.y - SHOTVERTICALDIST, transform.position.z);
+				shotXOffset = -SHOTHORIZONTALDIST;
 				shotVelocity = new Vector2(-SHOTSPEED, 0f);
 				break;
 			case gravityDirection.RIGHT:
-				shotPosition = new Vector3(transform.position.x + SHOTHORIZONTALDIST, transform.position.y - SHOTVERTICALDIST, transform.position.z);
+				shotXOffset = SHOTHORIZONTALDIST;
 				shotVelocity = new Vector2(SHOTSPEED, 0f);
 				break;
 			case gravityDirection.UP:
-				shotPosition = new Vector3(transform.position.x - SHOTVERTICALDIST, transform.position.y + SHOTHORIZONTALDIST, transform.position.z);
+				shotYOffset = SHOTHORIZONTALDIST;
 				shotVelocity = new Vector2(0f, SHOTSPEED);
 				break;
 			}
 
-			GameObject shot = Instantiate (shotPrefab, shotPosition, Quaternion.identity) as GameObject;
+			// calculate vertical distance based on current gravity
+			switch(gravity)
+			{
+			case gravityDirection.DOWN:
+				shotYOffset = -SHOTVERTICALDIST;
+				break;
+			case gravityDirection.LEFT:
+				shotXOffset = -SHOTVERTICALDIST;
+				break;
+			case gravityDirection.RIGHT:
+				shotXOffset = SHOTVERTICALDIST;
+				break;
+			case gravityDirection.UP:
+				shotYOffset = SHOTVERTICALDIST;
+				break;
+			}
+
+
+			GameObject shot = Instantiate (shotPrefab, new Vector3(transform.position.x + shotXOffset, transform.position.y + shotYOffset, 0f), Quaternion.identity) as GameObject;
 			Shot script = (Shot)shot.GetComponent ("Shot");
 			script.rigidbody2D.velocity = shotVelocity;
 		}

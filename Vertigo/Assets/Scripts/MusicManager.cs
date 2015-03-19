@@ -1,17 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MusicManager : MonoBehaviour {
+public class MusicManager : MonoBehaviour 
+{
+	public enum Song {INTRO, SONG1, SONG2, SONG3, SONG4, CREDITS};
+
+	public Song musicToPlay = Song.INTRO;
 
 	// Use this for initialization
 	void Start () 
 	{
-		GameObject introMusic = GameObject.Find ("Intro Music");
-		introMusic.audio.Play ();
+		GameObject introMusic;
+
+		switch (musicToPlay)
+		{
+		case Song.INTRO:
+			introMusic = GameObject.Find ("Intro Music");
+			introMusic.audio.Play ();
+			break;
+		case Song.SONG1:
+			introMusic = GameObject.Find ("Music 1");
+			introMusic.audio.Play ();
+			break;
+		case Song.SONG2:
+			introMusic = GameObject.Find ("Music 2");
+			introMusic.audio.Play ();
+			break;
+		case Song.SONG3:
+			introMusic = GameObject.Find ("Music 3");
+			introMusic.audio.Play ();
+			break;
+		case Song.SONG4:
+			introMusic = GameObject.Find ("Music 4");
+			introMusic.audio.Play ();
+			break;
+		case Song.CREDITS:
+			introMusic = GameObject.Find ("Credits Music");
+			introMusic.audio.Play ();
+			break;
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 }
