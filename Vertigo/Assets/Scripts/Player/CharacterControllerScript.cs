@@ -114,10 +114,10 @@ public class CharacterControllerScript: MonoBehaviour
 				break;
 			}
 
-
 			GameObject shot = Instantiate (shotPrefab, new Vector3(transform.position.x + shotXOffset, transform.position.y + shotYOffset, 0f), Quaternion.identity) as GameObject;
 			Shot script = (Shot)shot.GetComponent ("Shot");
 			script.rigidbody2D.velocity = shotVelocity;
+			SoundManager.playSound ("Shoot Sound");
 		}
 
 		if (Input.GetButton("Fire1"))
@@ -320,6 +320,7 @@ public class CharacterControllerScript: MonoBehaviour
 			}
 
 			rigidbody2D.AddForce (jumpVector);
+			SoundManager.playSound ("Jump Sound");
 		}
 	}
 
