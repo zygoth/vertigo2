@@ -69,22 +69,22 @@ public class Background : MonoBehaviour
 		
 		if(transform.position.x > camera.transform.position.x + 16)
 		{
-			newX = camera.transform.position.x - 16;
+			newX = transform.position.x - 16;
 		}
 		
 		if(transform.position.x < camera.transform.position.x - 16)
 		{
-			newX = camera.transform.position.x + 16;
+			newX = transform.position.x + 16;
 		}
 		
 		if(transform.position.y > camera.transform.position.y + 12)
 		{
-			newY = camera.transform.position.y - 12;
+			newY = transform.position.y - 12;
 		}
 		
 		if(transform.position.y < camera.transform.position.y - 12)
 		{
-			newY = camera.transform.position.y + 12;
+			newY = transform.position.y + 12;
 		}
 		
 		transform.position = new Vector3 (newX, newY, newZ);
