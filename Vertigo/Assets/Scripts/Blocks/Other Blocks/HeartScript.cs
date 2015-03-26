@@ -10,10 +10,13 @@ public class HeartScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.heal ();
-		Component.Destroy(gameObject);
+		if (other.name == "Character")
+		{
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
+			script.heal ();
+			Component.Destroy (gameObject);
+		}
 	}
 	
 	// Update is called once per frame
