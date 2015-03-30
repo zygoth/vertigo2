@@ -1,40 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
-	public int maxHealth = 100;
-	public double curHealth = 100;
-	public double healthBarLength;
+	public Slider healthBarSlider;//reference for slider
+	public double maxHealth;
+	public double curHealth;
 
 	// Use this for initialization
 	void Start () {
-		healthBarLength = Screen.width / 2;
+		maxHealth = 1;
+		curHealth = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		adjustCurHealth (0);
 	}
 
 	void OnGUI(){
-		GUI.color = Color.red;
-		GUI.Box (new Rect(125, 10, (float)healthBarLength, 20), curHealth + "/" + maxHealth);
 	}
 
-	public void adjustCurHealth(int adj){
-		curHealth += adj;
-		if (curHealth < 0) {//Check for going below 0 health
-			curHealth = 0;
+	/*
+	 * Used to adjust the health bar by some value, either positive or negative. Example: Adjusting by -.25 will lower the player's health by one quarter.
+	 */
+	public void adjustCurHealth(double adj){
+		healthBarSlider.value += (float)adj;//adjust health value
+		if (healthBarSlider.value < 0) {//Check for going below 0 health
+			healthBarSlider.value = 0;
 		}
 
-		if (curHealth > maxHealth) {//Check for going above max health
-			curHealth = maxHealth;
+		if (healthBarSlider.value > maxHealth) {//Check for going above max health
+			healthBarSlider.value = (float)maxHealth;
 		}
-
-		if (maxHealth < 1) {//Check for divide by 0
-			maxHealth = 1;
-		}
-		healthBarLength = (Screen.width / 2) * (curHealth / maxHealth);
-
+		curHealth = healthBarSlider.value;
 	}
 }

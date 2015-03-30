@@ -338,7 +338,7 @@ public class CharacterControllerScript: MonoBehaviour
 			//Adjust health. Currently just subtracts 25 health
 			GameObject character = GameObject.Find ("Character");
 			PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
-			health.adjustCurHealth(-25);
+			health.adjustCurHealth(-0.25);
 			if(health.curHealth <= 0){
 				die ();
 			}
@@ -356,7 +356,7 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		GameObject character = GameObject.Find ("Character");
 		PlayerHealth health = (PlayerHealth) character.GetComponent ("PlayerHealth");
-		health.adjustCurHealth(25);
+		health.adjustCurHealth(0.25);
 	}
 
 	/*
