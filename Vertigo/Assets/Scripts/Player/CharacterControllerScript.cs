@@ -343,13 +343,18 @@ public class CharacterControllerScript: MonoBehaviour
 				die ();
 			}
 			else{
-				//hurtInvincibilityTimer.Start ();
-				StartCoroutine("removeHurtInvincibility");
-				// set to partly transparent to indicate invincibility
+				//set to partly transparent to indicate invincibility
 				SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 				sr.color = new Color(1f,1f,1f,.6f);
+				Invoke ("removeInvince", 3);//Remove incincibility in 3 seconds I think this fixed the hurt bugs
 			}
 		}
+	}
+
+	private void removeInvince(){
+		hurtInvincibility = false;
+		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+		sr.color = new Color(1f,1f,1f,1f);
 	}
 
 	public void heal()
