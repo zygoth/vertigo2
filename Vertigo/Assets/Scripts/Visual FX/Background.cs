@@ -4,6 +4,8 @@ using System.Collections;
 public class Background : MonoBehaviour 
 {
 	public float MAXVELOCITY = 3f;
+	public float ACCEL_RATE = 0.05f;
+	public float SLOW_RATE = 0.95f;
 
 	// Use this for initialization
 	void Start () {
@@ -21,20 +23,20 @@ public class Background : MonoBehaviour
 		switch(characterScript.gravity)
 		{
 		case CharacterControllerScript.gravityDirection.DOWN:
-			newXVelocity = rigidbody2D.velocity.x * .95f;
-			newYVelocity -= .05f;
+			newXVelocity = rigidbody2D.velocity.x * SLOW_RATE;
+			newYVelocity -= ACCEL_RATE;
 			break;
 		case CharacterControllerScript.gravityDirection.LEFT:
-			newXVelocity = rigidbody2D.velocity.x - .05f;
-			newYVelocity *= .95f;
+			newXVelocity = rigidbody2D.velocity.x - ACCEL_RATE;
+			newYVelocity *= SLOW_RATE;
 			break;
 		case CharacterControllerScript.gravityDirection.UP:
-			newXVelocity = rigidbody2D.velocity.x * .95f;
-			newYVelocity += .05f;
+			newXVelocity = rigidbody2D.velocity.x * SLOW_RATE;
+			newYVelocity += ACCEL_RATE;
 			break;
 		case CharacterControllerScript.gravityDirection.RIGHT:
-			newXVelocity = rigidbody2D.velocity.x + .05f;
-			newYVelocity *= .95f;
+			newXVelocity = rigidbody2D.velocity.x + ACCEL_RATE;
+			newYVelocity *= SLOW_RATE;
 			break;
 		}
 
@@ -67,14 +69,14 @@ public class Background : MonoBehaviour
 		float newY = transform.position.y;
 		float newZ = transform.position.z;
 		
-		if(transform.position.x > camera.transform.position.x + 16)
+		if(transform.position.x > camera.transform.position.x + 15)
 		{
-			newX = transform.position.x - 16;
+			newX = transform.position.x - 15;
 		}
 		
-		if(transform.position.x < camera.transform.position.x - 16)
+		if(transform.position.x < camera.transform.position.x - 15)
 		{
-			newX = transform.position.x + 16;
+			newX = transform.position.x + 15;
 		}
 		
 		if(transform.position.y > camera.transform.position.y + 12)
