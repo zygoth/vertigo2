@@ -15,9 +15,10 @@ public class BlockLockedScript : MonoBehaviour {
 		{
 			GameObject character = GameObject.Find ("Character");
 			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
-			if (script.key) {
+			if (script.num_keys > 0) {
+				script.removeKey();
 				SoundManager.playSound ("Block Unlock");
-				Component.Destroy (gameObject);
+				Component.Destroy(gameObject);
 			}
 		}
 	}

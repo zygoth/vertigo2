@@ -13,7 +13,7 @@ public class KeyScript : MonoBehaviour {
 	{
 		GameObject character = GameObject.Find ("Character");
 		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.setKey (true);
+		script.addKey();
 		Component.Destroy(gameObject);
 	}
 

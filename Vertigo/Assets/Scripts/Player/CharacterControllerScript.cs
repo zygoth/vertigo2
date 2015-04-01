@@ -11,7 +11,7 @@ public class CharacterControllerScript: MonoBehaviour
 	// Maximum run speed
 	public float MAXSPEED = 10f;
 	public Vector2 gravityVector = new Vector2 (0f, -30f);
-	public bool key = false;
+	public int num_keys = 0;
 	private float MAXFALLSPEED = 50;
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
@@ -407,8 +407,12 @@ public class CharacterControllerScript: MonoBehaviour
 		this.enabled = true;
 	}
 
-	public void setKey(bool hasKey){
-		key = hasKey;
+	public void addKey(){
+		num_keys += 1;
+	}
+
+	public void removeKey(){
+		num_keys -= 1;
 	}
 
 	public void RotateLeft () 
