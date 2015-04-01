@@ -24,6 +24,10 @@ public class PlayerHealth : MonoBehaviour {
 	 * Used to adjust the health bar by some value, either positive or negative. Example: Adjusting by -.25 will lower the player's health by one quarter.
 	 */
 	public void adjustCurHealth(double adj){
+		if (adj > 0 && healthBarSlider.value < maxHealth) {
+			SoundManager.playSound("Heal Sound");
+		}
+
 		healthBarSlider.value += (float)adj;//adjust health value
 		if (healthBarSlider.value < 0) {//Check for going below 0 health
 			healthBarSlider.value = 0;
