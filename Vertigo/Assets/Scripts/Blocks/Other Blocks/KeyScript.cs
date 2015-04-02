@@ -12,9 +12,11 @@ public class KeyScript : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		GameObject character = GameObject.Find ("Character");
-		CharacterControllerScript script = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
-		script.addKey();
-		Component.Destroy(gameObject);
+		if (other == character.collider2D) {
+			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
+			script.addKey ();
+			Component.Destroy (gameObject);
+		}
 	}
 
 	// Update is called once per frame
