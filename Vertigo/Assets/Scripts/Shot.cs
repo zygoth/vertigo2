@@ -6,9 +6,13 @@ public class Shot : MonoBehaviour {
 	public GameObject explosionPrefab;
 	private Vector2 velocityVector;
 	// Use this for initialization
-	void Start () 
+	IEnumerator Start () 
 	{
-
+		yield return new WaitForSeconds (1);
+		if (!renderer.isVisible)
+		{
+			Destroy (gameObject);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -40,8 +44,12 @@ public class Shot : MonoBehaviour {
 
 	}
 
-	void OnBecameInvisible()
+	IEnumerator OnBecameInvisible()
 	{
-		Destroy (gameObject);
+		yield return new WaitForSeconds (1);
+		if (!renderer.isVisible)
+		{
+			Destroy (gameObject);
+		}
 	}
 }
