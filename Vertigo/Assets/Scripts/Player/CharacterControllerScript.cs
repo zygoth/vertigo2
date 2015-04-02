@@ -5,7 +5,7 @@ public class CharacterControllerScript: MonoBehaviour
 {
 	// used to create shots when firing
 	public GameObject shotPrefab;
-	private float SHOTSPEED = 10f;
+	private float SHOTSPEED = 15f;
 	private float SHOTVERTICALDIST = .4f;
 	private float SHOTHORIZONTALDIST = 1f;
 	// Maximum run speed
