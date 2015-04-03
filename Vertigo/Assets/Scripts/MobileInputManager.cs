@@ -11,6 +11,11 @@ public class MobileInputManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+		if (Input.touchCount == 0)
+		{
+			return;
+		}
+
 		float XAxis = 0f;
 		float YAxis = 0f;
 		bool jump = false;
@@ -31,13 +36,21 @@ public class MobileInputManager : MonoBehaviour {
 			{
 				XAxis = 1;
 			}
-			if (touch.position.y > AspectUtility.yOffset && touch.position.y < AspectUtility.yOffset + AspectUtility.screenHeight / 8)
+			if (touch.position.y > AspectUtility.yOffset && touch.position.y < AspectUtility.yOffset + AspectUtility.screenHeight / 2 &&
+			    touch.position.x < AspectUtility.yOffset + AspectUtility.screenWidth * 1 / 4)
 			{
 				YAxis = -1;
 			}
-			if (touch.position.y > AspectUtility.yOffset + AspectUtility.screenHeight / 8 && touch.position.y < AspectUtility.yOffset + AspectUtility.screenHeight / 4)
+			if (touch.position.y > AspectUtility.yOffset + AspectUtility.screenHeight / 2 && touch.position.y < AspectUtility.yOffset + AspectUtility.screenHeight &&
+			    touch.position.x < AspectUtility.yOffset + AspectUtility.screenWidth * 1 / 4)
 			{
 				YAxis = 1;
+			}
+
+			// only jump or shoot at the beginning of the touch
+			if(touch.phase != TouchPhase.Began)
+			{
+				continue;
 			}
 
 			// Jump check
@@ -52,6 +65,7 @@ public class MobileInputManager : MonoBehaviour {
 				shoot = true;
 			}
 		}
+
 		GameObject character = GameObject.Find("Character");
 		CharacterControllerScript script = (CharacterControllerScript)character.GetComponent("CharacterControllerScript");
 		script.doMovement (XAxis, YAxis);
