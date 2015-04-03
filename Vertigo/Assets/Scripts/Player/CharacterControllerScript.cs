@@ -65,9 +65,9 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
-	private void doShootCheck()
+	public void doShootCheck(bool fire = false)
 	{
-		if(Input.GetButtonDown("Fire1"))
+		if(Input.GetButtonDown("Fire1") || fire == true)
 		{
 			float shotXOffset = 0f;
 			float shotYOffset = 0f;
@@ -242,10 +242,13 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 	
-	void doMovement()
+	public void doMovement(float XAxis = 0f, float YAxis = 0f)
 	{
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis ("Vertical");
+
+		if(XAxis != 0) horizontal = XAxis;
+		if(YAxis != 0) vertical = YAxis;
 		
 		float movement;
 
@@ -295,9 +298,9 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
-	void doJumpCheck()
+	public void doJumpCheck(bool jump = false)
 	{
-		if (grounded && Input.GetButtonDown("Jump"))
+		if (grounded && (Input.GetButtonDown("Jump") || jump == true))
 		{
 			anim.SetBool ("Ground", false);
 
