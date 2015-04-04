@@ -8,7 +8,7 @@ public class SpritePostProcessor : AssetPostprocessor {
 		if (importer.textureType==TextureImporterType.Sprite) {
 			importer.textureFormat = TextureImporterFormat.RGBA32;
 			importer.mipmapEnabled = false;
-			importer.spritePixelsPerUnit=PixelPerfect.pixelsPerUnit;
+			//importer.spritePixelsPerUnit=PixelPerfect.pixelsPerUnit;
 			importer.filterMode=FilterMode.Point;
 			importer.spritePivot=new Vector2(0, 1);
 			importer.anisoLevel=0;
