@@ -396,6 +396,13 @@ public class CharacterControllerScript: MonoBehaviour
 	}
 
 	/*
+	 * This is here for the restart command.
+	 */
+	public void loadLevel(string newLevel){
+		Application.LoadLevel(newLevel);
+	}
+
+	/*
 	 * Disables player input and cancels velocity & gravity.  
 	 */
 	public void disableMovement()
