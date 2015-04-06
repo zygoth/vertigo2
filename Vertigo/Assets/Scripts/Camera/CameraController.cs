@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
 		rightWall = int.MaxValue;
 		topWall = int.MaxValue;
 		bottomWall = -int.MaxValue;
+		Screen.SetResolution (640, 480, true);
 	}
 
 	public void setOrientation(ScreenMode newMode)

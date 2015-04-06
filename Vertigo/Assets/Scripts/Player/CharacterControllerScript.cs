@@ -120,7 +120,7 @@ public class CharacterControllerScript: MonoBehaviour
 			SoundManager.playSound ("Shoot Sound");
 		}
 
-		if (Input.GetButton("Fire1"))
+		if (Input.GetButton("Fire1") || fire == true)
 		{
 			anim.SetBool("Shooting", true);
 		}
@@ -128,6 +128,8 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			anim.SetBool("Shooting", false);
 		}
+		
+		Screen.SetResolution(640, 480, true);
 	}
 
 	/*
