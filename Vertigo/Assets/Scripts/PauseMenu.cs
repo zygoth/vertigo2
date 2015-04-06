@@ -30,7 +30,6 @@ public class PauseMenu : MonoBehaviour
 		"Programming by Ben Coffman, Colin Thompson, Joe Lyon, Schuyler Goodman, Jeff Angell, & Joe Eklund",
 		"For more info, check out https://github.com/colindt/unity-platformer",
 		"Updated 4.4.2015"} ;
-	public Texture[] crediticons;
 	
 	public enum Page {
 		None,Main,Options,Credits
@@ -110,9 +109,6 @@ public class PauseMenu : MonoBehaviour
 		foreach(string credit in credits) {
 			GUILayout.Label(credit);
 		}
-		foreach( Texture credit in crediticons) {
-			GUILayout.Label(credit);
-		}
 		EndPage();
 	}
 	
@@ -138,7 +134,7 @@ public class PauseMenu : MonoBehaviour
 	
 	void StatControl() {
 		GUILayout.BeginHorizontal();
-		showfps = GUILayout.Toggle(showfps,"FPS");;
+		showfps = GUILayout.Toggle(showfps,"FPS");
 		GUILayout.EndHorizontal();
 	}
 	
@@ -154,7 +150,7 @@ public class PauseMenu : MonoBehaviour
 		if (showfps) {
 			string fpsstring= fps.ToString ("#,##0 fps");
 			GUI.color = Color.Lerp(lowFPSColor, highFPSColor,(fps-lowFPS)/(highFPS-lowFPS));
-			GUILayout.Label (fpsstring);
+			GUILayout.Label ("<size=20>" + fpsstring + "</size>");
 		}
 		GUILayout.EndArea();
 	}
@@ -182,7 +178,11 @@ public class PauseMenu : MonoBehaviour
 			
 		}
 		if (GUILayout.Button ("Restart")) {
-			restartLevel();
+			loadLevel(currentLevel);
+			
+		}
+		if (GUILayout.Button ("Main Menu")) {
+			loadLevel("Main Menu");
 			
 		}
 		if (GUILayout.Button ("Options")) {
@@ -218,7 +218,7 @@ public class PauseMenu : MonoBehaviour
 		}
 	}
 
-	void restartLevel(){
+	void loadLevel(string levelToLoad){
 		Time.timeScale = savedTimeScale;
 		AudioListener.pause = false;
 		if (IsBeginning() && start != null) {
@@ -226,8 +226,8 @@ public class PauseMenu : MonoBehaviour
 		}
 		GameObject character = GameObject.Find ("Character");
 		CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
-		script.loadLevel (currentLevel);
-
+		script.loadLevel (levelToLoad);
+		
 	}
 
 	bool IsGamePaused() {
