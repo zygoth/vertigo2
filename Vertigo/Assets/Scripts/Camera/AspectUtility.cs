@@ -9,7 +9,7 @@ public class AspectUtility : MonoBehaviour {
 		static float wantedAspectRatio;
 		static Camera cam;
 		static Camera backgroundCam;
-		/*
+		
 		void Awake () {
 			_landscapeModeOnly = landscapeModeOnly;
 			cam = camera;
@@ -76,7 +76,7 @@ public class AspectUtility : MonoBehaviour {
 				backgroundCam.backgroundColor = Color.black;
 				backgroundCam.cullingMask = 0;
 			}
-		}*/
+		}
 		
 		public static int screenHeight {
 			get {
@@ -101,7 +101,7 @@ public class AspectUtility : MonoBehaviour {
 				return (int)(Screen.height * cam.rect.y);
 			}
 		}
-		/*
+		
 		public static Rect screenRect {
 			get {
 				return new Rect(cam.rect.x * Screen.width, cam.rect.y * Screen.height, cam.rect.width * Screen.width, cam.rect.height * Screen.height);
@@ -124,5 +124,5 @@ public class AspectUtility : MonoBehaviour {
 				mousePos.x = Mathf.Clamp(mousePos.x, cam.rect.x * Screen.width, cam.rect.x * Screen.width + cam.rect.width * Screen.width);
 				return mousePos;
 			}
-		}*/
+		}
 }

@@ -128,8 +128,6 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			anim.SetBool("Shooting", false);
 		}
-		
-		Screen.SetResolution(640, 480, true);
 	}
 
 	/*
