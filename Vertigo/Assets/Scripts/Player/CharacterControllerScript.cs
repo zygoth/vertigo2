@@ -373,6 +373,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public void endLevel(string nextLevel)
 	{
 		levelToLoad = nextLevel;
+		LoadLevelBlock.updateLoadLevelBlock (nextLevel);
 		die ();
 	}
 
