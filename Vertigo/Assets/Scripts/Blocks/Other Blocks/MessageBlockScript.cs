@@ -8,18 +8,21 @@ public class MessageBlockScript : MonoBehaviour {
 	private bool viewed, generate, finishedMessage;
 	private double messageBoxLength;
 	private double messageBoxHeight;
-	private string message, messageTotal, messageTitle;
-	private float letterPause = 0.05f;
+	private string message;
+	public float DEFAULTTEXTSPEED = .05f;
+	public float FASTERTEXTSPEED = .001f;
+	public string messageTotal = "Default message, change this in the scene editor plz.";
+	public string messageTitle = "Default Title";
+	private float letterPause;
 
 	Rect windowRect = new Rect(80,80,200,200);
 
 	void Start () 
 	{
+		letterPause = DEFAULTTEXTSPEED;
 		viewed = generate = finishedMessage = false;
 		messageBoxLength = Screen.width / 2;
 		messageBoxHeight = Screen.height / 2;
-		messageTitle = "Incoming transmission...";
-		messageTotal = "This is a test message to see what happens when I have a really long sentence as the message. Will it stay all on the same line in the header or will it go into the body of the window?";
 		StartCoroutine (typeText ());
 	}
 
@@ -28,7 +31,7 @@ public class MessageBlockScript : MonoBehaviour {
 		foreach (char c in messageTotal.ToCharArray ()) 
 		{
 			message += c;
-			yield return 0;
+			//yield return 0;
 			yield return new WaitForSeconds (letterPause);
 		}
 		finishedMessage = true;
@@ -70,7 +73,7 @@ public class MessageBlockScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKeyDown (KeyCode.Return))
+		if(Input.GetButtonDown("Fire1") || (Input.touchCount != 0))
 		{
 			if(finishedMessage)
 			{
@@ -81,9 +84,16 @@ public class MessageBlockScript : MonoBehaviour {
 			}
 			else
 			{
-				StopAllCoroutines();
-				message = messageTotal;
-				finishedMessage = true;
+				if(letterPause == FASTERTEXTSPEED)
+				{
+					StopAllCoroutines();
+					message = messageTotal;
+					finishedMessage = true;
+				}
+				else
+				{
+					letterPause = FASTERTEXTSPEED;
+				}
 			}
 		}	
 	}
