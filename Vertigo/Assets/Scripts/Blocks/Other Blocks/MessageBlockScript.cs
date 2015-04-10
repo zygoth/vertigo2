@@ -23,7 +23,7 @@ public class MessageBlockScript : MonoBehaviour {
 		viewed = generate = finishedMessage = false;
 		messageBoxLength = Screen.width / 2;
 		messageBoxHeight = Screen.height / 2;
-		StartCoroutine (typeText ());
+		//StartCoroutine (typeText ());
 	}
 
 	IEnumerator typeText()
@@ -56,6 +56,7 @@ public class MessageBlockScript : MonoBehaviour {
 	{
 		if (!viewed) 
 		{
+			StartCoroutine (typeText ());
 			generate = !generate;
 			//Disable movement
 			GameObject character = GameObject.Find ("Character");
