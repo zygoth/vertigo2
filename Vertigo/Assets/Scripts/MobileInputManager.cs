@@ -40,7 +40,7 @@ public class MobileInputManager : MonoBehaviour {
 		for (int i = 0; i < Input.touchCount; i++)
 		{
 			Touch touch = Input.GetTouch(i);
-			Vector3 worldPoint = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y,0));
+			Vector3 worldPoint = cameraScript.camera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y,0));
 
 			if (worldPoint.x < bottomLeftCorner.x + SCREENWIDTH / 8)
 			{
