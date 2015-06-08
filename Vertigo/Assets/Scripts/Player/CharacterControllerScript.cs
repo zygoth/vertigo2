@@ -26,6 +26,10 @@ public class CharacterControllerScript: MonoBehaviour
 	public enum gravityDirection {DOWN, LEFT, UP, RIGHT};
 	// The current gravity direction
 	public gravityDirection gravity = gravityDirection.DOWN;
+
+	private CollisionDetector collisionDetector;
+
+
 	/*
 	 * Called when the object is instantiated (I think).
 	 */
@@ -33,6 +37,9 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		levelToLoad = Application.loadedLevelName;
 		anim = GetComponent<Animator>();
+
+		collisionDetector = new CollisionDetector(whatIsGround,
+		    new CollisionDetectorRaycast {angle = 0, relativePosition = new Vector2(0,0), length = 5}); 
 	}
 
 	/*
@@ -63,6 +70,8 @@ public class CharacterControllerScript: MonoBehaviour
 			Debug.Log ("craps + " + transform.localEulerAngles.z % 90);
 			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
 		}
+
+		Debug.Log ("distance to the right: " + collisionDetector.getMaxDistance (transform.position, 0));
 	}
 
 	public void doShootCheck(bool fire = false)
@@ -138,7 +147,7 @@ public class CharacterControllerScript: MonoBehaviour
 		while(true)
 		{
 			yield return new WaitForSeconds(3.0f); // wait 3 seconds
-			// do things
+
 			hurtInvincibility = false;
 			SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 			sr.color = new Color(1f,1f,1f,1f);
@@ -436,30 +445,35 @@ public class CharacterControllerScript: MonoBehaviour
 
 	public void switchGravity(gravityDirection newGravity)
 	{
-		/*float amount = -90 * (newGravity - gravity);
-		Debug.Log ("rotate " + amount);
-		transform.Rotate (0, 0, amount);*/ //this bit's broken somehow
+		float newRotation = 0;
 		transform.localEulerAngles = new Vector3(0,0, (int)newGravity * -90f);
 		gravity = newGravity;
+
 		switch (newGravity)
 		{
 		case gravityDirection.DOWN:
 			gravityVector.x = 0f;
 			gravityVector.y = -30f; //FIXME: magic numbers
+			newRotation = 0f;
 			break;
 		case gravityDirection.LEFT:
 			gravityVector.x = -30f;
 			gravityVector.y = 0f;
+			newRotation = Mathf.PI * 1.5f;
 			break;
 		case gravityDirection.UP:
 			gravityVector.x = 0f;
 			gravityVector.y = 30f;
+			newRotation = Mathf.PI * 1f;
 			break;
 		case gravityDirection.RIGHT:
 			gravityVector.x = 30f;
 			gravityVector.y = 0f;
+			newRotation = Mathf.PI * .5f;
 			break;
 		}
+
+		collisionDetector.rotation = newRotation;
 	}
 
 	void doWrapping()
