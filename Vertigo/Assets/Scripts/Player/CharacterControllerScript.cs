@@ -37,9 +37,26 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		levelToLoad = Application.loadedLevelName;
 		anim = GetComponent<Animator>();
+		initializeCollisionDetector ();
+	}
+
+	void initializeCollisionDetector()
+	{
+		float RAYCASTLENGTH = 5f;
+		float HALFPLAYERWIDTH = .709f;
+		float HALFPLAYERHEIGHT = 1.02f;
+		float HALFPLAYERFOOTWIDTH = .2f;
 
 		collisionDetector = new CollisionDetector(whatIsGround,
-		    new CollisionDetectorRaycast {angle = 0, relativePosition = new Vector2(0,0), length = 5}); 
+		                                          new CollisionDetectorRaycast {angle = 0f, relativePosition = new Vector2(HALFPLAYERWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = 0f, relativePosition = new Vector2(HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = Mathf.PI / 2f, relativePosition = new Vector2(HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = Mathf.PI, relativePosition = new Vector2(-HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = Mathf.PI, relativePosition = new Vector2(-HALFPLAYERWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(HALFPLAYERFOOTWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERFOOTWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH}); 
+
 	}
 
 	/*
@@ -71,7 +88,11 @@ public class CharacterControllerScript: MonoBehaviour
 			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
 		}
 
-		Debug.Log ("distance to the right: " + collisionDetector.getMaxDistance (transform.position, 0));
+		/*Debug.Log ("distance to the right: " + collisionDetector.getMaxDistance (transform.position, 0));
+		Debug.Log ("distance above: " + collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f));
+		Debug.Log ("distance to the left: " + collisionDetector.getMaxDistance (transform.position, Mathf.PI));
+		Debug.Log ("distance downward: " + collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f));
+		/**/
 	}
 
 	public void doShootCheck(bool fire = false)
