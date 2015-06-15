@@ -43,8 +43,8 @@ public class CharacterControllerScript: MonoBehaviour
 	void initializeCollisionDetector()
 	{
 		float RAYCASTLENGTH = 5f;
-		float HALFPLAYERWIDTH = .709f;
-		float HALFPLAYERHEIGHT = 1.02f;
+		float HALFPLAYERWIDTH = .7f;//.709f;
+		float HALFPLAYERHEIGHT = .99f;//1.02f;
 		float HALFPLAYERFOOTWIDTH = .2f;
 
 		collisionDetector = new CollisionDetector(whatIsGround,
@@ -88,7 +88,7 @@ public class CharacterControllerScript: MonoBehaviour
 			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
 		}
 
-		/*Debug.Log ("distance to the right: " + collisionDetector.getMaxDistance (transform.position, 0));
+		Debug.Log ("distance to the right: " + collisionDetector.getMaxDistance (transform.position, 0));
 		Debug.Log ("distance above: " + collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f));
 		Debug.Log ("distance to the left: " + collisionDetector.getMaxDistance (transform.position, Mathf.PI));
 		Debug.Log ("distance downward: " + collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f));
@@ -494,7 +494,7 @@ public class CharacterControllerScript: MonoBehaviour
 			break;
 		}
 
-		collisionDetector.rotation = newRotation;
+		collisionDetector.setRotation (newRotation);
 	}
 
 	void doWrapping()

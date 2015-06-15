@@ -14,7 +14,7 @@ public class CollisionDetectorRaycast
 
 	public CollisionDetectorRaycast Rotate(float radians)
 	{
-		return new CollisionDetectorRaycast{angle = (this.angle + radians) % (Mathf.PI * 2f),
+		return new CollisionDetectorRaycast{angle = angleAdd(this.angle, radians),
 											relativePosition = this.relativePosition.Rotate (radians),
 											length = this.length};
 	}
@@ -27,6 +27,26 @@ public class CollisionDetectorRaycast
 		Debug.Log ("rotated raycast angle: " + rotatedRay.angle);
 		Debug.Log ("rotated raycast position: " + rotatedRay.relativePosition);
 		Debug.Log ("rotated raycast length: " + rotatedRay.length);
+	}
+
+	private float numberDistance(float nr1, float nr2)
+	{
+		return Mathf.Abs(nr1 - nr2);
+	}
+	
+	/*
+	 * Adds two angles, keeping the result between -2pi and 2pi and rounding when very close
+	 * to the borders so that 2pi and 0 will evaluate equal.
+	 */
+	private float angleAdd(float f1, float f2)
+	{
+		float answer = (f1 + f2) % (Mathf.PI * 2);
+		if(numberDistance (Mathf.Abs(answer), Mathf.PI * 2) < .001)
+		{
+			return 0f;
+		}
+		
+		return answer;
 	}
 }
 
