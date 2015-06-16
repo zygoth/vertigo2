@@ -26,7 +26,7 @@ public class CollisionDetector
 	 */
 	public float getMaxDistance(Vector2 objectPosition, float angle)
 	{
-		float maxDistance = -1f;
+		float maxDistance = 100000f;
 		foreach (CollisionDetectorRaycast ray in rotatedRaycasts)
 		{
 			if (numberDistance(ray.angle, angle) < EPSILON)
@@ -36,7 +36,7 @@ public class CollisionDetector
 
 				if(hit.collider != null)
 				{
-					maxDistance = Mathf.Max (maxDistance, (hit.point - (ray.relativePosition + objectPosition)).magnitude);
+					maxDistance = /*Mathf.Max (maxDistance, */(hit.point - (ray.relativePosition + objectPosition)).magnitude/*)*/;
 				}
 			}
 		}

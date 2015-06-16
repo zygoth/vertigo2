@@ -9,10 +9,12 @@ public class CharacterControllerScript: MonoBehaviour
 	private float SHOTVERTICALDIST = .4f;
 	private float SHOTHORIZONTALDIST = 1f;
 	// Maximum run speed
-	public float MAXSPEED = 10f;
-	public Vector2 gravityVector = new Vector2 (0f, -30f);
+	private float MAXSPEED = .1f;
+	private float GRAVITYSPEED = .0000000000000001f;
+	private float COLLISIONBUFFER = .01f;
+	private Vector2 gravityVector = new Vector2 (0f, -0000000000000001f);
 	public int num_keys = 0;
-	private float MAXFALLSPEED = 50;
+	private float MAXFALLSPEED = .03f;
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
 	Animator anim;
@@ -20,8 +22,9 @@ public class CharacterControllerScript: MonoBehaviour
 	public Transform groundCheck;
 	float groundRadius = 0.2f;
 	public LayerMask whatIsGround;
-	public float JUMPFORCE = 800f;
+	private float JUMPVELOCITY = 3f;
 	private string levelToLoad;
+	private Vector2 velocity = new Vector2(0,0);
 	// Enum for gravity direction
 	public enum gravityDirection {DOWN, LEFT, UP, RIGHT};
 	// The current gravity direction
@@ -64,35 +67,88 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void FixedUpdate()
 	{
-		if(isVertical (gravity) && Mathf.Abs (rigidbody2D.velocity.y) < MAXFALLSPEED || 
-		   isHorizontal(gravity) && Mathf.Abs (rigidbody2D.velocity.x) < MAXFALLSPEED)
-		{
-			rigidbody2D.AddForce (gravityVector);
-		}
+
 	}
 
 	/*
 	 * Called every time a frame is rendered on screen, so may happen at variable rates.  Use for interrupt-based events.
+	 * This is the main high-level method of this class.
 	 */
 	void Update()
 	{
-		doJumpCheck ();
+		Debug.Log (1.0f / Time.deltaTime);
+
+		doGravity ();
 		doWrapping ();
-		doMovement ();
 		doGroundCheck ();
 		doShootCheck ();
-		
+		doJumpCheck ();
+		doMovement ();
+		doCollisionCheck ();
+
+		rigidbody2D.transform.position += new Vector3 (velocity.x, velocity.y, 0);
+
+
+
+
 		if (Mathf.Round(transform.localEulerAngles.z) % 90f > 1) // TODO: this is a hack to fix the strange rotation bug.
 		{
 			Debug.Log ("craps + " + transform.localEulerAngles.z % 90);
 			transform.localEulerAngles = new Vector3 (0, 0, (int)gravity * -90f);
 		}
+	}
 
-		Debug.Log ("distance to the right: " + collisionDetector.getMaxDistance (transform.position, 0));
-		Debug.Log ("distance above: " + collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f));
-		Debug.Log ("distance to the left: " + collisionDetector.getMaxDistance (transform.position, Mathf.PI));
-		Debug.Log ("distance downward: " + collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f));
+	private void doGravity()
+	{
+		switch(gravity)
+		{
+		case gravityDirection.DOWN:
+			if(velocity.y > -MAXFALLSPEED)
+				velocity += gravityVector;
+			break;
+		case gravityDirection.LEFT:
+			if(velocity.x > -MAXFALLSPEED)
+				velocity += gravityVector;
+			break;
+		case gravityDirection.RIGHT:
+			if(velocity.x < MAXFALLSPEED)
+				velocity += gravityVector;
+			break;
+		case gravityDirection.UP:
+			if(velocity.y < MAXFALLSPEED)
+				velocity += gravityVector;
+			break;
+		}
+	}
+
+	private void doCollisionCheck()
+	{
+		float xvel = velocity.x;
+		float yvel = velocity.y;
+
+		float rightDistance = collisionDetector.getMaxDistance (transform.position, 0);
+		float upDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f);
+		float leftDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI);
+		float downDistance = collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f);
+
+		/*
+		Debug.Log ("distance to the right: " + rightDistance);
+		Debug.Log ("distance above: " + upDistance);
+		Debug.Log ("distance to the left: " + leftDistance);
+		Debug.Log ("distance downward: " + downDistance);
 		/**/
+
+		if(xvel > 0)
+			xvel = Mathf.Min ((rightDistance /*/ Time.deltaTime*/) - COLLISIONBUFFER, velocity.x);
+		else
+			xvel = Mathf.Max ((-leftDistance /*/ Time.deltaTime*/) + COLLISIONBUFFER, velocity.x);
+		if(yvel > 0)
+			yvel = Mathf.Min ((upDistance /*/ Time.deltaTime*/) - COLLISIONBUFFER, velocity.y);
+		else
+			yvel = Mathf.Max ((-downDistance /*/ Time.deltaTime*/) + COLLISIONBUFFER, velocity.y);
+
+		velocity = new Vector2 (xvel, yvel);
+		//Debug.Log ("setting velocity to " + xvel + " " + yvel);
 	}
 
 	public void doShootCheck(bool fire = false)
@@ -102,7 +158,6 @@ public class CharacterControllerScript: MonoBehaviour
 			float shotXOffset = 0f;
 			float shotYOffset = 0f;
 
-			//TODO: finish this
 			gravityDirection facingDirection = getFacingDirection();
 			Vector2 shotVelocity = new Vector2(0f,0f);
 
@@ -263,12 +318,12 @@ public class CharacterControllerScript: MonoBehaviour
 	{
 		if(isVertical (gravity))
 		{
-			rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
+			velocity = new Vector2(0, velocity.y);
 		}
 
 		if(isHorizontal (gravity))
 		{
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+			velocity = new Vector2(velocity.x, 0);
 		}
 	}
 	
@@ -301,11 +356,11 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 			if(horizontal == 0)
 			{
-				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, vertical * MAXSPEED);
+				velocity = new Vector2(velocity.x, vertical * MAXSPEED);
 			}
 			else
 			{
-				rigidbody2D.velocity = new Vector2(horizontal * MAXSPEED, rigidbody2D.velocity.y);
+				velocity = new Vector2(horizontal * MAXSPEED, velocity.y);
 			}
 		}
 
@@ -333,26 +388,28 @@ public class CharacterControllerScript: MonoBehaviour
 		if (grounded && (Input.GetButtonDown("Jump") || jump == true))
 		{
 			anim.SetBool ("Ground", false);
+			grounded = false;
 
 			Vector2 jumpVector = new Vector2();
 
 			switch(gravity)
 			{
 				case gravityDirection.DOWN:
-					jumpVector = (new Vector2(0, JUMPFORCE));
+					jumpVector = (new Vector2(0, JUMPVELOCITY));
 					break;
 				case gravityDirection.RIGHT:
-					jumpVector = (new Vector2(-JUMPFORCE, 0));
+					jumpVector = (new Vector2(-JUMPVELOCITY, 0));
 					break;
 				case gravityDirection.UP:
-					jumpVector = (new Vector2(0, -JUMPFORCE));
+					jumpVector = (new Vector2(0, -JUMPVELOCITY));
 					break;
 				case gravityDirection.LEFT:
-					jumpVector = (new Vector2(JUMPFORCE, 0));
+					jumpVector = (new Vector2(JUMPVELOCITY, 0));
 					break;
 			}
 
-			rigidbody2D.AddForce (jumpVector);
+			rigidbody2D.transform.position += new Vector3(0, 1f, 0);
+			velocity += jumpVector;
 			SoundManager.playSound ("Jump Sound");
 		}
 	}
@@ -474,21 +531,21 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 		case gravityDirection.DOWN:
 			gravityVector.x = 0f;
-			gravityVector.y = -30f; //FIXME: magic numbers
+			gravityVector.y = -GRAVITYSPEED; //FIXME: magic numbers
 			newRotation = 0f;
 			break;
 		case gravityDirection.LEFT:
-			gravityVector.x = -30f;
+			gravityVector.x = -GRAVITYSPEED;
 			gravityVector.y = 0f;
 			newRotation = Mathf.PI * 1.5f;
 			break;
 		case gravityDirection.UP:
 			gravityVector.x = 0f;
-			gravityVector.y = 30f;
+			gravityVector.y = GRAVITYSPEED;
 			newRotation = Mathf.PI * 1f;
 			break;
 		case gravityDirection.RIGHT:
-			gravityVector.x = 30f;
+			gravityVector.x = GRAVITYSPEED;
 			gravityVector.y = 0f;
 			newRotation = Mathf.PI * .5f;
 			break;

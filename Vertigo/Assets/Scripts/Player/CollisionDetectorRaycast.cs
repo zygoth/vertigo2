@@ -41,7 +41,7 @@ public class CollisionDetectorRaycast
 	private float angleAdd(float f1, float f2)
 	{
 		float answer = (f1 + f2) % (Mathf.PI * 2);
-		if(numberDistance (Mathf.Abs(answer), Mathf.PI * 2) < .001)
+		if(numberDistance (Mathf.Abs(answer), Mathf.PI * 2) < .01)
 		{
 			return 0f;
 		}
