@@ -9,10 +9,10 @@ public class CharacterControllerScript: MonoBehaviour
 	private float SHOTVERTICALDIST = .4f;
 	private float SHOTHORIZONTALDIST = 1f;
 	// Maximum run speed
-	private float MAXSPEED = .2f;
-	private float GRAVITYSPEED = .01f;
+	private float MAXSPEED = .28f;
+	private float GRAVITYSPEED = .012f;
 	private float COLLISIONBUFFER = .01f;
-	private Vector2 gravityVector = new Vector2 (0f, -.01f);
+	private Vector2 gravityVector = new Vector2 (0f, -.012f);
 	public int num_keys = 0;
 	private float MAXFALLSPEED = .5f;
 	bool facingRight = true;	
@@ -45,9 +45,9 @@ public class CharacterControllerScript: MonoBehaviour
 
 	void initializeCollisionDetector()
 	{
-		float RAYCASTLENGTH = 5f;
+		float RAYCASTLENGTH = 2f;
 		float HALFPLAYERWIDTH = .7f;//.709f;
-		float HALFPLAYERHEIGHT = .99f;//1.02f;
+		float HALFPLAYERHEIGHT = .90f;//.99f;//1.02f;
 		float HALFPLAYERFOOTWIDTH = .2f;
 
 		collisionDetector = new CollisionDetector(whatIsGround,
@@ -57,8 +57,8 @@ public class CharacterControllerScript: MonoBehaviour
 		new CollisionDetectorRaycast {angle = Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
 		new CollisionDetectorRaycast {angle = Mathf.PI, relativePosition = new Vector2(-HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
 		new CollisionDetectorRaycast {angle = Mathf.PI, relativePosition = new Vector2(-HALFPLAYERWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
-		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(HALFPLAYERFOOTWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
-		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERFOOTWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH}); 
+		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(HALFPLAYERWIDTH, -HALFPLAYERHEIGHT - .05f), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERWIDTH, -HALFPLAYERHEIGHT - .05f), length = RAYCASTLENGTH}); 
 
 	}
 
@@ -67,6 +67,10 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void FixedUpdate()
 	{
+		doGravity ();
+		doMovement ();
+		doCollisionCheck ();
+
 		rigidbody2D.transform.position += new Vector3 (velocity.x, velocity.y, 0);
 	}
 
@@ -76,16 +80,10 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void Update()
 	{
-		Debug.Log (1.0f / Time.deltaTime);
-
-		doGravity ();
 		doWrapping ();
 		doGroundCheck ();
 		doShootCheck ();
 		doJumpCheck ();
-		doMovement ();
-		doCollisionCheck ();
-
 
 
 
@@ -131,7 +129,7 @@ public class CharacterControllerScript: MonoBehaviour
 		float leftDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI);
 		float downDistance = collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f);
 
-		/*
+
 		Debug.Log ("distance to the right: " + rightDistance);
 		Debug.Log ("distance above: " + upDistance);
 		Debug.Log ("distance to the left: " + leftDistance);
@@ -139,13 +137,23 @@ public class CharacterControllerScript: MonoBehaviour
 		/**/
 
 		if(xvel > 0)
-			xvel = Mathf.Min ((rightDistance /*/ Time.deltaTime*/) - COLLISIONBUFFER, velocity.x);
+			xvel = Mathf.Min (rightDistance - COLLISIONBUFFER, velocity.x);
 		else
-			xvel = Mathf.Max ((-leftDistance /*/ Time.deltaTime*/) + COLLISIONBUFFER, velocity.x);
+			xvel = Mathf.Max (-leftDistance + COLLISIONBUFFER, velocity.x);
 		if(yvel > 0)
-			yvel = Mathf.Min ((upDistance /*/ Time.deltaTime*/) - COLLISIONBUFFER, velocity.y);
+			yvel = Mathf.Min (upDistance - COLLISIONBUFFER, velocity.y);
 		else
-			yvel = Mathf.Max ((-downDistance /*/ Time.deltaTime*/) + COLLISIONBUFFER, velocity.y);
+			yvel = Mathf.Max (-downDistance + COLLISIONBUFFER, velocity.y);
+
+		if(rightDistance == 0)
+			//xvel = -.1f;
+			transform.position += new Vector3(-.1f, 0f, 0f);
+		if(leftDistance == 0)
+			transform.position += new Vector3(.1f, 0f, 0f);
+		if(upDistance == 0)
+			transform.position += new Vector3(0f, -.1f, 0f);
+		if(downDistance == 0)
+			transform.position += new Vector3(0f, .1f, 0f);
 
 		velocity = new Vector2 (xvel, yvel);
 		//Debug.Log ("setting velocity to " + xvel + " " + yvel);
@@ -408,7 +416,7 @@ public class CharacterControllerScript: MonoBehaviour
 					break;
 			}
 
-			velocity += jumpVector;
+			velocity = jumpVector;
 			SoundManager.playSound ("Jump Sound");
 		}
 	}
