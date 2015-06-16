@@ -9,12 +9,12 @@ public class CharacterControllerScript: MonoBehaviour
 	private float SHOTVERTICALDIST = .4f;
 	private float SHOTHORIZONTALDIST = 1f;
 	// Maximum run speed
-	private float MAXSPEED = .1f;
-	private float GRAVITYSPEED = .0000000000000001f;
+	private float MAXSPEED = .2f;
+	private float GRAVITYSPEED = .01f;
 	private float COLLISIONBUFFER = .01f;
-	private Vector2 gravityVector = new Vector2 (0f, -0000000000000001f);
+	private Vector2 gravityVector = new Vector2 (0f, -.01f);
 	public int num_keys = 0;
-	private float MAXFALLSPEED = .03f;
+	private float MAXFALLSPEED = .5f;
 	bool facingRight = true;	
 	bool hurtInvincibility = false;
 	Animator anim;
@@ -22,7 +22,7 @@ public class CharacterControllerScript: MonoBehaviour
 	public Transform groundCheck;
 	float groundRadius = 0.2f;
 	public LayerMask whatIsGround;
-	private float JUMPVELOCITY = 3f;
+	private float JUMPVELOCITY = .42f;
 	private string levelToLoad;
 	private Vector2 velocity = new Vector2(0,0);
 	// Enum for gravity direction
@@ -67,7 +67,7 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	void FixedUpdate()
 	{
-
+		rigidbody2D.transform.position += new Vector3 (velocity.x, velocity.y, 0);
 	}
 
 	/*
@@ -86,7 +86,7 @@ public class CharacterControllerScript: MonoBehaviour
 		doMovement ();
 		doCollisionCheck ();
 
-		rigidbody2D.transform.position += new Vector3 (velocity.x, velocity.y, 0);
+
 
 
 
@@ -408,7 +408,6 @@ public class CharacterControllerScript: MonoBehaviour
 					break;
 			}
 
-			rigidbody2D.transform.position += new Vector3(0, 1f, 0);
 			velocity += jumpVector;
 			SoundManager.playSound ("Jump Sound");
 		}
@@ -531,7 +530,7 @@ public class CharacterControllerScript: MonoBehaviour
 		{
 		case gravityDirection.DOWN:
 			gravityVector.x = 0f;
-			gravityVector.y = -GRAVITYSPEED; //FIXME: magic numbers
+			gravityVector.y = -GRAVITYSPEED;
 			newRotation = 0f;
 			break;
 		case gravityDirection.LEFT:
