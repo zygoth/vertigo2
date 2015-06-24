@@ -57,8 +57,8 @@ public class CharacterControllerScript: MonoBehaviour
 		new CollisionDetectorRaycast {angle = Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
 		new CollisionDetectorRaycast {angle = Mathf.PI, relativePosition = new Vector2(-HALFPLAYERWIDTH, HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
 		new CollisionDetectorRaycast {angle = Mathf.PI, relativePosition = new Vector2(-HALFPLAYERWIDTH, -HALFPLAYERHEIGHT), length = RAYCASTLENGTH},
-		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(HALFPLAYERWIDTH, -HALFPLAYERHEIGHT - .05f), length = RAYCASTLENGTH},
-		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERWIDTH, -HALFPLAYERHEIGHT - .05f), length = RAYCASTLENGTH}); 
+		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(HALFPLAYERWIDTH, -HALFPLAYERHEIGHT - .1f), length = RAYCASTLENGTH},
+		new CollisionDetectorRaycast {angle = 3f*Mathf.PI / 2f, relativePosition = new Vector2(-HALFPLAYERWIDTH, -HALFPLAYERHEIGHT - .1f), length = RAYCASTLENGTH}); 
 
 	}
 
@@ -71,7 +71,7 @@ public class CharacterControllerScript: MonoBehaviour
 		doMovement ();
 		doCollisionCheck ();
 
-		rigidbody2D.transform.position += new Vector3 (velocity.x, velocity.y, 0);
+		//rigidbody2D.transform.position += new Vector3 (velocity.x, velocity.y, 0);
 	}
 
 	/*
@@ -125,25 +125,32 @@ public class CharacterControllerScript: MonoBehaviour
 		float yvel = velocity.y;
 
 		float rightDistance = collisionDetector.getMaxDistance (transform.position, 0);
-		float upDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f);
 		float leftDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI);
-		float downDistance = collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f);
+
 
 
 		Debug.Log ("distance to the right: " + rightDistance);
-		Debug.Log ("distance above: " + upDistance);
+		//Debug.Log ("distance above: " + upDistance);
 		Debug.Log ("distance to the left: " + leftDistance);
-		Debug.Log ("distance downward: " + downDistance);
+		//Debug.Log ("distance downward: " + downDistance);
 		/**/
 
 		if(xvel > 0)
 			xvel = Mathf.Min (rightDistance - COLLISIONBUFFER, velocity.x);
 		else
 			xvel = Mathf.Max (-leftDistance + COLLISIONBUFFER, velocity.x);
+
+		rigidbody2D.transform.position += new Vector3 (xvel, 0, 0);
+
+		float upDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f);
+		float downDistance = collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f);
+
 		if(yvel > 0)
 			yvel = Mathf.Min (upDistance - COLLISIONBUFFER, velocity.y);
 		else
 			yvel = Mathf.Max (-downDistance + COLLISIONBUFFER, velocity.y);
+
+		rigidbody2D.transform.position += new Vector3 (0, yvel, 0);
 
 		if(rightDistance == 0)
 			//xvel = -.1f;
