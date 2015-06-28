@@ -3,13 +3,20 @@ using System.Collections;
 
 public class CollisionDetector
 {
+	// The raycasts that will be used to detect collisions
 	private CollisionDetectorRaycast[] raycasts;
+	// Rotated raycasts, allows for rotation of the object
 	private CollisionDetectorRaycast[] rotatedRaycasts;
-
+	// The threshold under which two angles are considered equal
 	public float EPSILON = .1f;
+	// The LayerMask that determines which objects this one will collide with 
 	private LayerMask colliderMask;
+	// The current rotation of this object
 	private float rotation = 0f;
 
+	/*
+	 * Constructor, initializes the collider mask and all raycasts associated with this object
+	 */
 	public CollisionDetector(LayerMask colliderMask, params CollisionDetectorRaycast[] r)
 	{
 		raycasts = r;
@@ -60,12 +67,17 @@ public class CollisionDetector
 		}
 	}
 
+	/*
+	 * Helper method
+	 * Gets the distance between two numbers.
+	 */
 	private float numberDistance(float nr1, float nr2)
 	{
 		return Mathf.Abs(nr1 - nr2);
 	}
 
 	/*
+	 * Helper method
 	 * Adds two angles, keeping the result between -2pi and 2pi and rounding when very close
 	 * to the borders so that 2pi and 0 will evaluate equal.
 	 */

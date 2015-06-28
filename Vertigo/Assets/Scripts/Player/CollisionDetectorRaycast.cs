@@ -8,8 +8,11 @@ using System.Collections;
  */
 public class CollisionDetectorRaycast
 {
+	// The angle at which the raycast should fire
 	public float angle { get; set; }
+	// The position of the raycast relative to the colliding object
 	public Vector2 relativePosition { get; set; }
+	// The length of the raycast.  Should be as long as the fastest speed of the object to prevent clipping.
 	public float length { get; set; }
 
 	public CollisionDetectorRaycast Rotate(float radians)
@@ -19,6 +22,9 @@ public class CollisionDetectorRaycast
 											length = this.length};
 	}
 
+	/*
+	 * Test method
+	 */
 	public void testRotate()
 	{
 		Debug.Log ("testing raycast rotate");
@@ -29,12 +35,17 @@ public class CollisionDetectorRaycast
 		Debug.Log ("rotated raycast length: " + rotatedRay.length);
 	}
 
+	/*
+	 * Helper method
+	 * Gets the distance between two numbers.
+	 */
 	private float numberDistance(float nr1, float nr2)
 	{
 		return Mathf.Abs(nr1 - nr2);
 	}
 	
 	/*
+	 * Helper method
 	 * Adds two angles, keeping the result between -2pi and 2pi and rounding when very close
 	 * to the borders so that 2pi and 0 will evaluate equal.
 	 */
@@ -50,6 +61,10 @@ public class CollisionDetectorRaycast
 	}
 }
 
+/*
+ * Helper method
+ * Extension to the Vector2 class to allow for easy rotation.
+ */
 public static class Vector2Extension
 {
 	public static Vector2 Rotate(this Vector2 v, float radians)

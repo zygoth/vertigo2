@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MobileInputManager : MonoBehaviour {
@@ -82,7 +82,7 @@ public class MobileInputManager : MonoBehaviour {
 
 		GameObject character = GameObject.Find("Character");
 		CharacterControllerScript script = (CharacterControllerScript)character.GetComponent("CharacterControllerScript");
-		script.doMovement (XAxis, YAxis);
+		script.doWalking (XAxis, YAxis);
 		script.doJumpCheck (jump);
 		script.doShootCheck (shoot);
 	}

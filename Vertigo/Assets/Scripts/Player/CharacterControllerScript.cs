@@ -63,15 +63,14 @@ public class CharacterControllerScript: MonoBehaviour
 	}
 
 	/*
-	 * Called at fixed intervals during the game.  Use for things that must happen at steady intervals of time. 
+	 * Called at fixed intervals during the game. Use for things that must happen at steady intervals of time (movement). 
 	 */
 	void FixedUpdate()
 	{
 		doGravity ();
-		doMovement ();
-		doCollisionCheck ();
+		doWalking ();
 
-		//rigidbody2D.transform.position += new Vector3 (velocity.x, velocity.y, 0);
+		updatePosition ();
 	}
 
 	/*
@@ -96,6 +95,10 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
+	/*
+	 * Acceleration due to gravity. Each frame, add a little to the velocity depending
+	 * on which way gravity is currently going.
+	 */
 	private void doGravity()
 	{
 		switch(gravity)
@@ -119,51 +122,53 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
-	private void doCollisionCheck()
+	/*
+	 * Updates the position of the object according to the current velocity vector.
+	 * Updates x first, then y. This prevents sinking into corners & other problems.
+	 */
+	private void updatePosition()
 	{
 		float xvel = velocity.x;
 		float yvel = velocity.y;
 
+		// Get distance to any objects going right or left
 		float rightDistance = collisionDetector.getMaxDistance (transform.position, 0);
 		float leftDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI);
 
-
-
-		Debug.Log ("distance to the right: " + rightDistance);
-		//Debug.Log ("distance above: " + upDistance);
-		Debug.Log ("distance to the left: " + leftDistance);
-		//Debug.Log ("distance downward: " + downDistance);
-		/**/
-
+		// If the raycast said there's something close, we shouldn't go past it.
 		if(xvel > 0)
 			xvel = Mathf.Min (rightDistance - COLLISIONBUFFER, velocity.x);
 		else
 			xvel = Mathf.Max (-leftDistance + COLLISIONBUFFER, velocity.x);
 
+		// Update the actual x position.
 		rigidbody2D.transform.position += new Vector3 (xvel, 0, 0);
 
+		// Get distance to any objects going up or down
 		float upDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f);
 		float downDistance = collisionDetector.getMaxDistance (transform.position, 3f*Mathf.PI / 2f);
 
+		// If the raycast said there's something close, we shouldn't go past it.
 		if(yvel > 0)
 			yvel = Mathf.Min (upDistance - COLLISIONBUFFER, velocity.y);
 		else
 			yvel = Mathf.Max (-downDistance + COLLISIONBUFFER, velocity.y);
 
+		// Update the actual y position.
 		rigidbody2D.transform.position += new Vector3 (0, yvel, 0);
 
-		if(rightDistance == 0)
-			//xvel = -.1f;
+		// Panic: if we are somehow inside an obstacle, try to get out.
+		if(rightDistance == 0f)
 			transform.position += new Vector3(-.1f, 0f, 0f);
-		if(leftDistance == 0)
+		if(leftDistance == 0f)
 			transform.position += new Vector3(.1f, 0f, 0f);
-		if(upDistance == 0)
+		if(upDistance == 0f)
 			transform.position += new Vector3(0f, -.1f, 0f);
-		if(downDistance == 0)
+		if(downDistance == 0f)
 			transform.position += new Vector3(0f, .1f, 0f);
 
+		// update velocity vector
 		velocity = new Vector2 (xvel, yvel);
-		//Debug.Log ("setting velocity to " + xvel + " " + yvel);
 	}
 
 	public void doShootCheck(bool fire = false)
@@ -342,7 +347,7 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 	
-	public void doMovement(float XAxis = 0f, float YAxis = 0f)
+	public void doWalking(float XAxis = 0f, float YAxis = 0f)
 	{
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis ("Vertical");
@@ -398,6 +403,9 @@ public class CharacterControllerScript: MonoBehaviour
 		}
 	}
 
+	/*
+	 * Jumps if the button is pressed and the object is touching the ground.
+	 */
 	public void doJumpCheck(bool jump = false)
 	{
 		if (grounded && (Input.GetButtonDown("Jump") || jump == true))
@@ -513,6 +521,9 @@ public class CharacterControllerScript: MonoBehaviour
 		this.enabled = false;
 	}
 
+	/*
+	 * Re-enables movement
+	 */
 	public void enableMovement()
 	{
 		rigidbody2D.isKinematic = false;
