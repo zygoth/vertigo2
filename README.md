@@ -7,6 +7,16 @@
     * Overall setting & plot
     * In-game events * cutscenes
 
+* Story systems
+    * Dialogue system
+          *  Profile pictures for the person talking
+          *  Different fonts for each speaker to express their personality
+          *  Support pauses, bold/italics for flavor
+          *  Different text scroll noises for each character?
+    * Cutscenes
+          *  Dialogue system + events that display different art as a scene progresses
+    * Variable to keep track of story progress & change triggers in the "home" room
+
 * Level Editor
     * Define level file format (probably YAML)
     * Grid snapping & object placement
@@ -22,7 +32,7 @@
     * As soon as the basic version is done, open it up to supporters (they'll have to share the files directly until the sharing system is done)
 
 * Art
-    * Decide on new art style (leaning towards greyscale for the main game)
+    * Decide on new art style (leaning towards greyscale for the main game but color pixel art for real scenes)
     * Find a pixel artist that I like & get a quote (fiverr probably)
     
 * Level design
