@@ -1,0 +1,47 @@
+Advanced Usage
+-----------------
+
+As I had mentioned in the introduction this plugin was designed to be extremely simple but highly flexible
+
+I've added support for 4 standard events that you can bind to and use to both control the flow of dialogue as well as trigger events in your project.
+
+
+Events
+-----------------
+
+Simple Dialogue Editor supports 4 standard events that you can listen to from within your game logic these are:
+
+- OnStart:
+When a dialogue has been initiated via Play.
+
+- OnEnd
+When a dialogue ends.
+
+- OnEvent
+When a custom event is specified.
+
+- OnDialogueChanged
+When the dialogue is changed to the next message.
+
+All events are bindable via an instance of the dialogue component which you can get as follows.
+
+myDialogue = GetComponent<Dialogue> ();
+
+I've made example scripts of how each of these events can be used in my DialogueTest.cs file from within the Demo folder of this plugin.
+
+
+Custom Events
+-----------------
+
+Simple Dialogue Editor supports custom events from within the inspector you'll notice that each dialogue item has an event filed. If this field is populated then when the dialogue moves to this item the "OnEvent" event will be triggered exposing the EventName property for your usage.
+
+In other words the event field in the inspector is an arbitrary text field where you can specify any event you like and deal with it in the "OnEvent" event
+
+For Example:
+Let's assume I have a dialogue item that contains the event "ScreenShake" I could then bind to the "OnEvent" event and trigger my games screenshake code.
+
+myDialogue.OnEvent += (EventName) => {		
+	if(EventName == "ShakeScreen"){
+		//Shake screen using my code here....
+	}
+};

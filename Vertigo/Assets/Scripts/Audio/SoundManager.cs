@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour {
 			return;
 		}
 
-		sound.audio.Play ();
+		sound.GetComponent<AudioSource>().Play ();
 	}
 	
 	// Update is called once per frame

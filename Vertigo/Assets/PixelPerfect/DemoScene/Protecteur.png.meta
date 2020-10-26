@@ -1,114 +1,285 @@
 fileFormatVersion: 2
 guid: d2b82f72674d00141b78fdce8381ae67
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Protecteur_0
-    21300002: Protecteur_1
-    21300004: Protecteur_2
-    21300006: Protecteur_3
-    21300008: Protecteur_4
-    21300010: Protecteur_5
-    21300012: Protecteur_6
-    21300014: Protecteur_7
-    21300016: Protecteur_8
-    21300018: Protecteur_9
-    21300020: Protecteur_10
-    21300022: Protecteur_11
-    21300024: Protecteur_12
-    21300026: Protecteur_13
-    21300028: Protecteur_14
-    21300030: Protecteur_15
-    21300032: Protecteur_16
-    21300034: Protecteur_17
-    21300036: Protecteur_18
-    21300038: Protecteur_19
-    21300040: Protecteur_20
-    21300042: Protecteur_21
-    21300044: Protecteur_22
-    21300046: Protecteur_23
-    21300048: Protecteur_24
-    21300050: Protecteur_25
-    21300052: Protecteur_26
-    21300054: Protecteur_27
-    21300056: Protecteur_28
-    21300058: Protecteur_29
-    21300060: Protecteur_30
-    21300062: Protecteur_31
-    21300064: Protecteur_32
-    21300066: Protecteur_33
-    21300068: Protecteur_34
-    21300070: Protecteur_35
-    21300072: Protecteur_36
-    21300074: Protecteur_37
-    21300076: Protecteur_38
-    21300078: Protecteur_39
-    21300080: Protecteur_40
-    21300082: Protecteur_41
-    21300084: Protecteur_42
-    21300086: Protecteur_43
-    21300088: Protecteur_44
-    21300090: Protecteur_45
-    21300092: Protecteur_46
-    21300094: Protecteur_47
-    21300096: Protecteur_48
-    21300098: Protecteur_49
-    21300100: Protecteur_50
-    21300102: Protecteur_51
-    21300104: Protecteur_52
-    21300106: Protecteur_53
-    21300108: Protecteur_54
-    21300110: Protecteur_55
-    21300112: Protecteur_56
-    21300114: Protecteur_57
-    21300116: Protecteur_58
-    21300118: Protecteur_59
-    21300120: Protecteur_60
-    21300122: Protecteur_61
-    21300124: Protecteur_62
-    21300126: Protecteur_63
-    21300128: Protecteur_64
-    21300130: Protecteur_65
-    21300132: Protecteur_66
-    21300134: Protecteur_67
-    21300136: Protecteur_68
-    21300138: Protecteur_69
-    21300140: Protecteur_70
-    21300142: Protecteur_71
-    21300144: Protecteur_72
-    21300146: Protecteur_73
-    21300148: Protecteur_74
-    21300150: Protecteur_75
-    21300152: Protecteur_76
-    21300154: Protecteur_77
-    21300156: Protecteur_78
-    21300158: Protecteur_79
-    21300160: Protecteur_80
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Protecteur_0
+  - first:
+      213: 21300002
+    second: Protecteur_1
+  - first:
+      213: 21300004
+    second: Protecteur_2
+  - first:
+      213: 21300006
+    second: Protecteur_3
+  - first:
+      213: 21300008
+    second: Protecteur_4
+  - first:
+      213: 21300010
+    second: Protecteur_5
+  - first:
+      213: 21300012
+    second: Protecteur_6
+  - first:
+      213: 21300014
+    second: Protecteur_7
+  - first:
+      213: 21300016
+    second: Protecteur_8
+  - first:
+      213: 21300018
+    second: Protecteur_9
+  - first:
+      213: 21300020
+    second: Protecteur_10
+  - first:
+      213: 21300022
+    second: Protecteur_11
+  - first:
+      213: 21300024
+    second: Protecteur_12
+  - first:
+      213: 21300026
+    second: Protecteur_13
+  - first:
+      213: 21300028
+    second: Protecteur_14
+  - first:
+      213: 21300030
+    second: Protecteur_15
+  - first:
+      213: 21300032
+    second: Protecteur_16
+  - first:
+      213: 21300034
+    second: Protecteur_17
+  - first:
+      213: 21300036
+    second: Protecteur_18
+  - first:
+      213: 21300038
+    second: Protecteur_19
+  - first:
+      213: 21300040
+    second: Protecteur_20
+  - first:
+      213: 21300042
+    second: Protecteur_21
+  - first:
+      213: 21300044
+    second: Protecteur_22
+  - first:
+      213: 21300046
+    second: Protecteur_23
+  - first:
+      213: 21300048
+    second: Protecteur_24
+  - first:
+      213: 21300050
+    second: Protecteur_25
+  - first:
+      213: 21300052
+    second: Protecteur_26
+  - first:
+      213: 21300054
+    second: Protecteur_27
+  - first:
+      213: 21300056
+    second: Protecteur_28
+  - first:
+      213: 21300058
+    second: Protecteur_29
+  - first:
+      213: 21300060
+    second: Protecteur_30
+  - first:
+      213: 21300062
+    second: Protecteur_31
+  - first:
+      213: 21300064
+    second: Protecteur_32
+  - first:
+      213: 21300066
+    second: Protecteur_33
+  - first:
+      213: 21300068
+    second: Protecteur_34
+  - first:
+      213: 21300070
+    second: Protecteur_35
+  - first:
+      213: 21300072
+    second: Protecteur_36
+  - first:
+      213: 21300074
+    second: Protecteur_37
+  - first:
+      213: 21300076
+    second: Protecteur_38
+  - first:
+      213: 21300078
+    second: Protecteur_39
+  - first:
+      213: 21300080
+    second: Protecteur_40
+  - first:
+      213: 21300082
+    second: Protecteur_41
+  - first:
+      213: 21300084
+    second: Protecteur_42
+  - first:
+      213: 21300086
+    second: Protecteur_43
+  - first:
+      213: 21300088
+    second: Protecteur_44
+  - first:
+      213: 21300090
+    second: Protecteur_45
+  - first:
+      213: 21300092
+    second: Protecteur_46
+  - first:
+      213: 21300094
+    second: Protecteur_47
+  - first:
+      213: 21300096
+    second: Protecteur_48
+  - first:
+      213: 21300098
+    second: Protecteur_49
+  - first:
+      213: 21300100
+    second: Protecteur_50
+  - first:
+      213: 21300102
+    second: Protecteur_51
+  - first:
+      213: 21300104
+    second: Protecteur_52
+  - first:
+      213: 21300106
+    second: Protecteur_53
+  - first:
+      213: 21300108
+    second: Protecteur_54
+  - first:
+      213: 21300110
+    second: Protecteur_55
+  - first:
+      213: 21300112
+    second: Protecteur_56
+  - first:
+      213: 21300114
+    second: Protecteur_57
+  - first:
+      213: 21300116
+    second: Protecteur_58
+  - first:
+      213: 21300118
+    second: Protecteur_59
+  - first:
+      213: 21300120
+    second: Protecteur_60
+  - first:
+      213: 21300122
+    second: Protecteur_61
+  - first:
+      213: 21300124
+    second: Protecteur_62
+  - first:
+      213: 21300126
+    second: Protecteur_63
+  - first:
+      213: 21300128
+    second: Protecteur_64
+  - first:
+      213: 21300130
+    second: Protecteur_65
+  - first:
+      213: 21300132
+    second: Protecteur_66
+  - first:
+      213: 21300134
+    second: Protecteur_67
+  - first:
+      213: 21300136
+    second: Protecteur_68
+  - first:
+      213: 21300138
+    second: Protecteur_69
+  - first:
+      213: 21300140
+    second: Protecteur_70
+  - first:
+      213: 21300142
+    second: Protecteur_71
+  - first:
+      213: 21300144
+    second: Protecteur_72
+  - first:
+      213: 21300146
+    second: Protecteur_73
+  - first:
+      213: 21300148
+    second: Protecteur_74
+  - first:
+      213: 21300150
+    second: Protecteur_75
+  - first:
+      213: 21300152
+    second: Protecteur_76
+  - first:
+      213: 21300154
+    second: Protecteur_77
+  - first:
+      213: 21300156
+    second: Protecteur_78
+  - first:
+      213: 21300158
+    second: Protecteur_79
+  - first:
+      213: 21300160
+    second: Protecteur_80
+  externalObjects: {}
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 4
   maxTextureSize: 4096
   textureSettings:
+    serializedVersion: 2
     filterMode: 0
     aniso: 0
-    mipBias: -1
-    wrapMode: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -117,14 +288,37 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0, y: 1}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Protecteur_0
+    - serializedVersion: 2
+      name: Protecteur_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,7 +328,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_1
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_1
       rect:
         serializedVersion: 2
         x: 200
@@ -144,7 +349,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_2
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_2
       rect:
         serializedVersion: 2
         x: 400
@@ -154,7 +370,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_3
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_3
       rect:
         serializedVersion: 2
         x: 600
@@ -164,7 +391,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_4
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_4
       rect:
         serializedVersion: 2
         x: 800
@@ -174,7 +412,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_5
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -184,7 +433,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_6
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -194,7 +454,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_7
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_7
       rect:
         serializedVersion: 2
         x: 1400
@@ -204,7 +475,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_8
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_8
       rect:
         serializedVersion: 2
         x: 1600
@@ -214,7 +496,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_9
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_9
       rect:
         serializedVersion: 2
         x: 0
@@ -224,7 +517,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_10
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_10
       rect:
         serializedVersion: 2
         x: 200
@@ -234,7 +538,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_11
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_11
       rect:
         serializedVersion: 2
         x: 400
@@ -244,7 +559,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_12
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_12
       rect:
         serializedVersion: 2
         x: 600
@@ -254,7 +580,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_13
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_13
       rect:
         serializedVersion: 2
         x: 800
@@ -264,7 +601,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_14
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_14
       rect:
         serializedVersion: 2
         x: 1000
@@ -274,7 +622,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_15
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_15
       rect:
         serializedVersion: 2
         x: 1200
@@ -284,7 +643,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_16
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_16
       rect:
         serializedVersion: 2
         x: 1400
@@ -294,7 +664,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_17
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_17
       rect:
         serializedVersion: 2
         x: 1600
@@ -304,7 +685,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_18
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_18
       rect:
         serializedVersion: 2
         x: 0
@@ -314,7 +706,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_19
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_19
       rect:
         serializedVersion: 2
         x: 200
@@ -324,7 +727,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_20
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_20
       rect:
         serializedVersion: 2
         x: 400
@@ -334,7 +748,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_21
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_21
       rect:
         serializedVersion: 2
         x: 600
@@ -344,7 +769,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_22
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_22
       rect:
         serializedVersion: 2
         x: 800
@@ -354,7 +790,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_23
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_23
       rect:
         serializedVersion: 2
         x: 1000
@@ -364,7 +811,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_24
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_24
       rect:
         serializedVersion: 2
         x: 1200
@@ -374,7 +832,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_25
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_25
       rect:
         serializedVersion: 2
         x: 1400
@@ -384,7 +853,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_26
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_26
       rect:
         serializedVersion: 2
         x: 1600
@@ -394,7 +874,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_27
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_27
       rect:
         serializedVersion: 2
         x: 0
@@ -404,7 +895,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_28
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_28
       rect:
         serializedVersion: 2
         x: 200
@@ -414,7 +916,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_29
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_29
       rect:
         serializedVersion: 2
         x: 400
@@ -424,7 +937,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_30
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_30
       rect:
         serializedVersion: 2
         x: 600
@@ -434,7 +958,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_31
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_31
       rect:
         serializedVersion: 2
         x: 800
@@ -444,7 +979,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_32
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_32
       rect:
         serializedVersion: 2
         x: 1000
@@ -454,7 +1000,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_33
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_33
       rect:
         serializedVersion: 2
         x: 1200
@@ -464,7 +1021,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_34
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_34
       rect:
         serializedVersion: 2
         x: 1400
@@ -474,7 +1042,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_35
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_35
       rect:
         serializedVersion: 2
         x: 1600
@@ -484,7 +1063,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_36
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_36
       rect:
         serializedVersion: 2
         x: 0
@@ -494,7 +1084,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_37
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_37
       rect:
         serializedVersion: 2
         x: 200
@@ -504,7 +1105,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_38
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_38
       rect:
         serializedVersion: 2
         x: 400
@@ -514,7 +1126,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_39
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_39
       rect:
         serializedVersion: 2
         x: 600
@@ -524,7 +1147,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_40
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_40
       rect:
         serializedVersion: 2
         x: 800
@@ -534,7 +1168,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_41
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_41
       rect:
         serializedVersion: 2
         x: 1000
@@ -544,7 +1189,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_42
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_42
       rect:
         serializedVersion: 2
         x: 1200
@@ -554,7 +1210,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_43
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_43
       rect:
         serializedVersion: 2
         x: 1400
@@ -564,7 +1231,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_44
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_44
       rect:
         serializedVersion: 2
         x: 1600
@@ -574,7 +1252,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_45
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_45
       rect:
         serializedVersion: 2
         x: 0
@@ -584,7 +1273,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_46
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_46
       rect:
         serializedVersion: 2
         x: 200
@@ -594,7 +1294,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_47
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_47
       rect:
         serializedVersion: 2
         x: 400
@@ -604,7 +1315,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_48
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_48
       rect:
         serializedVersion: 2
         x: 600
@@ -614,7 +1336,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_49
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_49
       rect:
         serializedVersion: 2
         x: 800
@@ -624,7 +1357,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_50
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_50
       rect:
         serializedVersion: 2
         x: 1000
@@ -634,7 +1378,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_51
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_51
       rect:
         serializedVersion: 2
         x: 1200
@@ -644,7 +1399,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_52
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_52
       rect:
         serializedVersion: 2
         x: 1400
@@ -654,7 +1420,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_53
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_53
       rect:
         serializedVersion: 2
         x: 1600
@@ -664,7 +1441,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_54
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_54
       rect:
         serializedVersion: 2
         x: 0
@@ -674,7 +1462,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_55
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_55
       rect:
         serializedVersion: 2
         x: 200
@@ -684,7 +1483,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_56
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_56
       rect:
         serializedVersion: 2
         x: 400
@@ -694,7 +1504,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_57
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_57
       rect:
         serializedVersion: 2
         x: 600
@@ -704,7 +1525,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_58
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_58
       rect:
         serializedVersion: 2
         x: 800
@@ -714,7 +1546,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_59
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_59
       rect:
         serializedVersion: 2
         x: 1000
@@ -724,7 +1567,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_60
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69305410000000000800000000000000
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_60
       rect:
         serializedVersion: 2
         x: 1200
@@ -734,7 +1588,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_61
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89305410000000000800000000000000
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_61
       rect:
         serializedVersion: 2
         x: 1400
@@ -744,7 +1609,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_62
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9305410000000000800000000000000
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_62
       rect:
         serializedVersion: 2
         x: 1600
@@ -754,7 +1630,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_63
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9305410000000000800000000000000
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_63
       rect:
         serializedVersion: 2
         x: 0
@@ -764,7 +1651,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_64
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9305410000000000800000000000000
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_64
       rect:
         serializedVersion: 2
         x: 200
@@ -774,7 +1672,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_65
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a305410000000000800000000000000
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_65
       rect:
         serializedVersion: 2
         x: 400
@@ -784,7 +1693,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_66
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a305410000000000800000000000000
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_66
       rect:
         serializedVersion: 2
         x: 600
@@ -794,7 +1714,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_67
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a305410000000000800000000000000
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_67
       rect:
         serializedVersion: 2
         x: 800
@@ -804,7 +1735,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_68
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a305410000000000800000000000000
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_68
       rect:
         serializedVersion: 2
         x: 1000
@@ -814,7 +1756,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_69
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a305410000000000800000000000000
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_69
       rect:
         serializedVersion: 2
         x: 1200
@@ -824,7 +1777,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_70
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa305410000000000800000000000000
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_70
       rect:
         serializedVersion: 2
         x: 1400
@@ -834,7 +1798,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_71
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca305410000000000800000000000000
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_71
       rect:
         serializedVersion: 2
         x: 1600
@@ -844,7 +1819,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_72
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea305410000000000800000000000000
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_72
       rect:
         serializedVersion: 2
         x: 0
@@ -854,7 +1840,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_73
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b305410000000000800000000000000
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_73
       rect:
         serializedVersion: 2
         x: 200
@@ -864,7 +1861,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_74
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b305410000000000800000000000000
+      internalID: 21300146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_74
       rect:
         serializedVersion: 2
         x: 400
@@ -874,7 +1882,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_75
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b305410000000000800000000000000
+      internalID: 21300148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_75
       rect:
         serializedVersion: 2
         x: 600
@@ -884,7 +1903,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_76
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b305410000000000800000000000000
+      internalID: 21300150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_76
       rect:
         serializedVersion: 2
         x: 800
@@ -894,7 +1924,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_77
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b305410000000000800000000000000
+      internalID: 21300152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_77
       rect:
         serializedVersion: 2
         x: 1000
@@ -904,7 +1945,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_78
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab305410000000000800000000000000
+      internalID: 21300154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_78
       rect:
         serializedVersion: 2
         x: 1200
@@ -914,7 +1966,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_79
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb305410000000000800000000000000
+      internalID: 21300156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_79
       rect:
         serializedVersion: 2
         x: 1400
@@ -924,7 +1987,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Protecteur_80
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb305410000000000800000000000000
+      internalID: 21300158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Protecteur_80
       rect:
         serializedVersion: 2
         x: 1600
@@ -934,5 +2008,29 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c305410000000000800000000000000
+      internalID: 21300160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

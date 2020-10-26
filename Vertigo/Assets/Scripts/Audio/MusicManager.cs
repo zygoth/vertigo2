@@ -16,27 +16,27 @@ public class MusicManager : MonoBehaviour
 		{
 		case Song.INTRO:
 			introMusic = GameObject.Find ("Intro Music");
-			introMusic.audio.Play ();
+			introMusic.GetComponent<AudioSource>().Play ();
 			break;
 		case Song.SONG1:
 			introMusic = GameObject.Find ("Music 1");
-			introMusic.audio.Play ();
+			introMusic.GetComponent<AudioSource>().Play ();
 			break;
 		case Song.SONG2:
 			introMusic = GameObject.Find ("Music 2");
-			introMusic.audio.Play ();
+			introMusic.GetComponent<AudioSource>().Play ();
 			break;
 		case Song.SONG3:
 			introMusic = GameObject.Find ("Music 3");
-			introMusic.audio.Play ();
+			introMusic.GetComponent<AudioSource>().Play ();
 			break;
 		case Song.SONG4:
 			introMusic = GameObject.Find ("Music 4");
-			introMusic.audio.Play ();
+			introMusic.GetComponent<AudioSource>().Play ();
 			break;
 		case Song.CREDITS:
 			introMusic = GameObject.Find ("Credits Music");
-			introMusic.audio.Play ();
+			introMusic.GetComponent<AudioSource>().Play ();
 			break;
 		}
 	}

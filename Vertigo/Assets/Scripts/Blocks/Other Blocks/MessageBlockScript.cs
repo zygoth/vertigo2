@@ -5,64 +5,53 @@ using System.Collections;
 public class MessageBlockScript : MonoBehaviour {
 	
 	// Use this for initialization
-	private bool viewed, generate, finishedMessage;
-	private double messageBoxLength;
-	private double messageBoxHeight;
-	private string message;
-	public float DEFAULTTEXTSPEED = .05f;
-	public float FASTERTEXTSPEED = .001f;
-	public string messageTotal = "Default message, change this in the scene editor plz.";
-	public string messageTitle = "Default Title";
-	private float letterPause;
-
-	Rect windowRect = new Rect(80,80,200,200);
+	private bool viewed;
+	private Dialogue dialogue;
 
 	void Start () 
 	{
-		letterPause = DEFAULTTEXTSPEED;
-		viewed = generate = finishedMessage = false;
-		messageBoxLength = Screen.width / 2;
-		messageBoxHeight = Screen.height / 2;
-		//StartCoroutine (typeText ());
-	}
+		
+		dialogue = GetComponent<Dialogue> ();
+		
+		//Binding to start event, you can trigger code logic when a chat starts.
+		dialogue.OnStart += () => {
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
+			script.disableMovement ();
+		};
 
-	IEnumerator typeText()
-	{
-		foreach (char c in messageTotal.ToCharArray ()) 
-		{
-			message += c;
-			//yield return 0;
-			yield return new WaitForSeconds (letterPause);
-		}
-		finishedMessage = true;
-	}
+		//Binding to end event, you can trigger code logic when chat ends.
+		dialogue.OnEnd += () => {
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
+			script.enableMovement ();
+		};
 
-	void OnGUI()
-	{
-		if (generate == true) 
-		{
-			GUI.backgroundColor = Color.black;
-			GUI.contentColor = Color.white;
-			windowRect = GUI.Window (1, new Rect (130, 35, (float)messageBoxLength, (float)messageBoxHeight), generateWindow, messageTitle);
-		}
-	}
+		//binding to Event event, you can triger code on certain conditions i.e "screenshake", "playsound", "takedamage"
+		dialogue.OnEvent += (EventName) => {		
 
-	void generateWindow(int windowID)
-	{
-		GUILayout.Label (message);
+			if(EventName == "ShakeScreen"){
+				//Shake my screen using my own code here....
+			}
+			//Sample usage of the event system
+			//if(EventName == "ScreenShake") { ScreenShake() }
+		};
+
+		//binding to OnDialogueChange, you can trigger code when the player changes the message.
+		dialogue.OnDialogueChanged += (DialogueItem) => {
+			
+		};
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (!viewed) 
 		{
-			StartCoroutine (typeText ());
-			generate = !generate;
-			//Disable movement
 			GameObject character = GameObject.Find ("Character");
 			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
 			script.disableMovement ();
 			viewed = true;
+			dialogue.Play();
 		}
 	}
 	
@@ -74,28 +63,9 @@ public class MessageBlockScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetButtonDown("Fire1") || (Input.touchCount != 0))
+		if(Input.GetButtonDown("Fire1"))
 		{
-			if(finishedMessage)
-			{
-				generate = false;
-				GameObject character = GameObject.Find ("Character");
-				CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
-				script.enableMovement ();
-			}
-			else
-			{
-				if(letterPause == FASTERTEXTSPEED)
-				{
-					StopAllCoroutines();
-					message = messageTotal;
-					finishedMessage = true;
-				}
-				else
-				{
-					letterPause = FASTERTEXTSPEED;
-				}
-			}
+			dialogue.Next();			
 		}	
 	}
 }

@@ -9,7 +9,7 @@ public class Shot : MonoBehaviour {
 	IEnumerator Start () 
 	{
 		yield return new WaitForSeconds (1);
-		if (!renderer.isVisible)
+		if (!GetComponent<Renderer>().isVisible)
 		{
 			Destroy (gameObject);
 		}
@@ -47,7 +47,7 @@ public class Shot : MonoBehaviour {
 	IEnumerator OnBecameInvisible()
 	{
 		yield return new WaitForSeconds (1);
-		if (!renderer.isVisible)
+		if (!GetComponent<Renderer>().isVisible)
 		{
 			Destroy (gameObject);
 		}

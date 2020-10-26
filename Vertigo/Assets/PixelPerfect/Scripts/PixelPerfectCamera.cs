@@ -15,8 +15,8 @@ public class PixelPerfectCamera : MonoBehaviour {
 	[HideInInspector]public int checkedPixelZoom;
 	float checkedOrthoSize;
 	float currentWidth, currentHeight;
-	float targetHeight {get{return camera.pixelHeight;}}
-	float targetWidth  {get{return camera.pixelWidth ;}}
+	float targetHeight {get{return GetComponent<Camera>().pixelHeight;}}
+	float targetWidth  {get{return GetComponent<Camera>().pixelWidth ;}}
 
 	void Update () {
 		AdjustSize();
@@ -66,7 +66,7 @@ public class PixelPerfectCamera : MonoBehaviour {
 
 		if (targetWidth!=currentWidth || targetHeight!=currentHeight || checkedPixelZoom!=pixelScale) {
 			PixelPerfect.SetPixelPerfect(pixelsPerUnit, pixelScale);
-			camera.orthographicSize = (float)((targetHeight / (PixelPerfect.pixelsPerUnit * PixelPerfect.pixelScale)) * 0.5d);		
+			GetComponent<Camera>().orthographicSize = (float)((targetHeight / (PixelPerfect.pixelsPerUnit * PixelPerfect.pixelScale)) * 0.5d);		
 			currentWidth=targetWidth;
 			currentHeight=targetHeight;
 			checkedPixelZoom=pixelScale;

@@ -142,7 +142,7 @@ public class CharacterControllerScript: MonoBehaviour
 			xvel = Mathf.Max (-leftDistance + COLLISIONBUFFER, velocity.x);
 
 		// Update the actual x position.
-		rigidbody2D.transform.position += new Vector3 (xvel, 0, 0);
+		GetComponent<Rigidbody2D>().transform.position += new Vector3 (xvel, 0, 0);
 
 		// Get distance to any objects going up or down
 		float upDistance = collisionDetector.getMaxDistance (transform.position, Mathf.PI / 2f);
@@ -155,7 +155,7 @@ public class CharacterControllerScript: MonoBehaviour
 			yvel = Mathf.Max (-downDistance + COLLISIONBUFFER, velocity.y);
 
 		// Update the actual y position.
-		rigidbody2D.transform.position += new Vector3 (0, yvel, 0);
+		GetComponent<Rigidbody2D>().transform.position += new Vector3 (0, yvel, 0);
 
 		// Panic: if we are somehow inside an obstacle, try to get out.
 		if(rightDistance == 0f)
@@ -221,7 +221,7 @@ public class CharacterControllerScript: MonoBehaviour
 
 			GameObject shot = Instantiate (shotPrefab, new Vector3(transform.position.x + shotXOffset, transform.position.y + shotYOffset, 0f), Quaternion.identity) as GameObject;
 			Shot script = (Shot)shot.GetComponent ("Shot");
-			script.rigidbody2D.velocity = shotVelocity;
+			script.GetComponent<Rigidbody2D>().velocity = shotVelocity;
 			SoundManager.playSound ("Shoot Sound");
 		}
 
@@ -517,7 +517,7 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	public void disableMovement()
 	{
-		rigidbody2D.isKinematic = true;
+		GetComponent<Rigidbody2D>().isKinematic = true;
 		this.enabled = false;
 	}
 
@@ -526,7 +526,7 @@ public class CharacterControllerScript: MonoBehaviour
 	 */
 	public void enableMovement()
 	{
-		rigidbody2D.isKinematic = false;
+		GetComponent<Rigidbody2D>().isKinematic = false;
 		this.enabled = true;
 	}
 

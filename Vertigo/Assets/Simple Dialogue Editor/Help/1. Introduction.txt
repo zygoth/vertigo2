@@ -1,0 +1,12 @@
+Introduction
+-----------------
+
+Thank you for purchasing SimpleDialogueEditor.
+
+This folder contains guides and information on how to implement and use this plugin with your own projects.
+
+If you found this plugin to be simple! And easy to use please consider leaving us a rating and or comment in the Unity5 asset store we would appreciate that very much!
+
+Kind Regards
+Ryan!
+

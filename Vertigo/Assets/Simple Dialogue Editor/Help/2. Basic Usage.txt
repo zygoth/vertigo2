@@ -1,0 +1,40 @@
+Basic Usage
+-----------------
+
+This plugin was designed to be both extremely simple and highly flexible so that you can make the most out of it within any project.
+
+To use this plugin in its most basic form simply drag an instance of "SimpleDialogueHud" into your projects hierarchy and attach the script "Dialogue" to any object that you wish to allow dialogue interactions on.
+
+Once this is done you can use the inspector to edit the properties.
+
+
+Inspector
+-----------------
+
+Message Speed - The speed the message displays
+Minimum Wait Time - The minimum time to wait before displaying the next message if the user has tried to progress
+Dialogue Items - the list of dialogue items to be used for this object.
+
+Each Dialogue Item Supports a Title, Event and a Message.
+
+The Title will be reflected in the Title portion of the dialogue that appears on screen during runtime as does the Message.
+
+For More information on "Events" and advanced usage please see the "Advanced Usage" documentation.
+
+Once this is done you can use the inspector to edit the properties.
+
+
+Triggering Dialogue
+-----------------
+
+To trigger the dialogue system simply obtain a reference to the component attached to your object i.e.
+
+myDialogue = GetComponent<Dialogue> ();
+
+Then from within a script that has access to the dialogue component of the object in question you can initiate the dialogue events by using:
+
+myDialogue.Play();
+
+To progress the dialogue to the next message you can simply bind player inputs or gamepad controls to:
+
+myDialogue.Next();

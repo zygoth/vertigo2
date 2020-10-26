@@ -17,25 +17,25 @@ public class Background : MonoBehaviour
 		GameObject character = GameObject.Find ("Character");
 		CharacterControllerScript characterScript = (CharacterControllerScript) character.GetComponent ("CharacterControllerScript");
 
-		float newXVelocity = rigidbody2D.velocity.x;
-		float newYVelocity = rigidbody2D.velocity.y;
+		float newXVelocity = GetComponent<Rigidbody2D>().velocity.x;
+		float newYVelocity = GetComponent<Rigidbody2D>().velocity.y;
 
 		switch(characterScript.gravity)
 		{
 		case CharacterControllerScript.gravityDirection.DOWN:
-			newXVelocity = rigidbody2D.velocity.x * SLOW_RATE;
+			newXVelocity = GetComponent<Rigidbody2D>().velocity.x * SLOW_RATE;
 			newYVelocity -= ACCEL_RATE;
 			break;
 		case CharacterControllerScript.gravityDirection.LEFT:
-			newXVelocity = rigidbody2D.velocity.x - ACCEL_RATE;
+			newXVelocity = GetComponent<Rigidbody2D>().velocity.x - ACCEL_RATE;
 			newYVelocity *= SLOW_RATE;
 			break;
 		case CharacterControllerScript.gravityDirection.UP:
-			newXVelocity = rigidbody2D.velocity.x * SLOW_RATE;
+			newXVelocity = GetComponent<Rigidbody2D>().velocity.x * SLOW_RATE;
 			newYVelocity += ACCEL_RATE;
 			break;
 		case CharacterControllerScript.gravityDirection.RIGHT:
-			newXVelocity = rigidbody2D.velocity.x + ACCEL_RATE;
+			newXVelocity = GetComponent<Rigidbody2D>().velocity.x + ACCEL_RATE;
 			newYVelocity *= SLOW_RATE;
 			break;
 		}
@@ -43,7 +43,7 @@ public class Background : MonoBehaviour
 		newXVelocity = enforceBounds (-MAXVELOCITY, MAXVELOCITY, newXVelocity);
 		newYVelocity = enforceBounds (-MAXVELOCITY, MAXVELOCITY, newYVelocity);
 
-		rigidbody2D.velocity = new Vector2 (newXVelocity, newYVelocity);
+		GetComponent<Rigidbody2D>().velocity = new Vector2 (newXVelocity, newYVelocity);
 	}
 
 	private float enforceBounds(float min, float max, float value)
