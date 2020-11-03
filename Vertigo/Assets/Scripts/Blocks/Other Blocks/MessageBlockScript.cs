@@ -6,12 +6,12 @@ public class MessageBlockScript : MonoBehaviour {
 	
 	// Use this for initialization
 	private bool viewed;
-	private Dialogue dialogue;
+	private NewDialogue dialogue;
 
 	void Start () 
 	{
 		
-		dialogue = GetComponent<Dialogue> ();
+		dialogue = GetComponent<NewDialogue> ();
 		
 		//Binding to start event, you can trigger code logic when a chat starts.
 		dialogue.OnStart += () => {
