@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +13,9 @@ public class NewDialogue : MonoBehaviour {
 
 	//Trigger for message progression
 	private bool _next = false;
+
+	//Special characters that can be in a line of dialogue.
+	private char[] specialChars = {'[', ']'};
 
 	//Events for hooking
 	public event OnStartHandler OnStart;
@@ -34,8 +37,7 @@ public class NewDialogue : MonoBehaviour {
 			if(line.Length > 1) {
 				dialogueLines.Add(line);
 			}			
-		}
-		
+		}		
 
 		GameObject UI_Hud = GameObject.Find("SDH_UI_GROUP");
 		if (UI_Hud) {
@@ -69,21 +71,12 @@ public class NewDialogue : MonoBehaviour {
 
 	}
 
-	IEnumerator DisplayDialogue(string DI){
+	IEnumerator DisplayDialogue(string line){
 
 		//Flip the trigger for progression
 		_next = false;
 
-		Text txtName = GameObject.Find ("SDH_txtName").GetComponent<Text>();
-		Text txtMessage = GameObject.Find ("SDH_txtMessage").GetComponent<Text>();
-		AudioSource sfx = GameObject.Find ("SDH_UI_GROUP").GetComponent<AudioSource>();
-
-		txtName.text = "testname";
-		for (int i = 0; i <= DI.Length; i++) {
-			txtMessage.text = DI.Substring(0, i);
-			sfx.Play();
-			yield return new WaitForSeconds(MessageSpeed);
-		};
+		yield return StartCoroutine(displayLine(line));		
 
 		//if (DI.event_key.Length > 0)
 		//	OnEvent (DI.event_key);
@@ -95,9 +88,111 @@ public class NewDialogue : MonoBehaviour {
 
 	}
 
+	IEnumerator displayLine(string line) {
+
+
+		Text txtName = GameObject.Find ("SDH_txtName").GetComponent<Text>();
+		txtName.supportRichText = true;
+		Text txtMessage = GameObject.Find ("SDH_txtMessage").GetComponent<Text>();
+		AudioSource sfx = GameObject.Find ("SDH_UI_GROUP").GetComponent<AudioSource>();
+		
+		ParsingContext context = new ParsingContext(line, "", 0, txtName, txtMessage);
+
+		while(context.index < context.rawLine.Length) {			
+			parseUntilNextCharacter(context);
+			sfx.Play();
+			yield return new WaitForSeconds(MessageSpeed);
+		};
+	}
+
+	/*
+		Parses the line until a new character is added to the displayed string. This can mean just adding a single character
+		(when displaying text normally), or parsing the speaker (beginning of the line), or parsing commands to do things
+		like speed up or slow down the text, emit an event (for some cutscene action to occur for example), or to handle
+		rich text elements like bold or colors.
+	*/
+	void parseUntilNextCharacter(ParsingContext context) {
+		
+		bool characterParsed = false;
+		while(characterParsed == false) {
+			characterParsed = parseToken(context);
+		}
+	}
+
+	/*
+		The core of the parsing algorithm. Parses the next token available at context.index.
+	*/
+	bool parseToken(ParsingContext context) {
+
+		// We just started the line, so parse out the speaker's name and put it in the Name spot
+		if(context.index == 0) {
+			parseNameAndEmotion(context);
+			return false;;	
+		}
+
+		// check for special chars that signal rich text, events, or speed changes
+		foreach(char c in specialChars) {
+			if(context.rawLine[context.index] == c) {
+				parseSpecialChar(context);
+				return false;
+			}
+		}
+
+		// Finally if we made it here then we reached a displayable character
+		context.displayedText += context.rawLine[context.index];
+		context.index++;
+		context.txtMessage.text = context.displayedText;
+		return true;
+	}
+
+	void parseSpecialChar(ParsingContext context) {
+		//TODO deal with custom commands and rich text
+	}
+
+	void parseNameAndEmotion(ParsingContext context) {
+		int colonIndex = context.rawLine.IndexOf(":");
+		int parenIndex = context.rawLine.IndexOf("(");
+		
+		string name;
+		if(parenIndex != -1 && parenIndex < colonIndex) { // an emotion was included, so strip that out of the name
+			name = context.rawLine.Substring(0, parenIndex);
+		}
+		else {
+			name = context.rawLine.Substring(0, colonIndex);
+		}
+
+		context.txtName.text = name;
+		
+		context.index = colonIndex + 2;
+
+		// change the display picture based on the name and emotion of the character.
+		changePicture(context.rawLine.Substring(0, colonIndex));
+	}
+
+	void changePicture(string nameAndEmotion) {
+		// TODO figure out how to put a picture in the right place. the text position will need to be changed to give space for this.
+	}
+
 	IEnumerator WaitForNext(){
 		while (! _next)
 			yield return null;
 	}
 
+	private class ParsingContext {
+		public string rawLine;
+		public string displayedText;
+		public int index;
+		public Text txtName; 
+		public Text txtMessage;
+
+		public ParsingContext(string rawLine, string displayedText, int index, Text txtName, Text txtMessage) {
+			this.rawLine = rawLine;
+			this.displayedText = displayedText;
+			this.index = index;
+			this.txtName = txtName;
+			this.txtMessage = txtMessage;
+		}
+	}
 }
+
+
