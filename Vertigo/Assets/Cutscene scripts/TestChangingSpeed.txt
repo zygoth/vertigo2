@@ -1,0 +1,10 @@
+NormalGuy: Hey, this is normal text.
+
+FastGuy: [textspeed=2]And this is fast text! Wow!!111
+
+SlowGuy: [textspeed=.5]Help I'm trapped in a heavy gravity field
+
+CrazyGuy: [textspeed=4]OMG I'm tripping balls, how much caffeine was that I don't even know but now I want to[forceproceed]
+CrazyGuy: run a marathon and then run another one just because I can asdfasdfasdf
+
+NormalGuy: [textspeed=1]oooookay then

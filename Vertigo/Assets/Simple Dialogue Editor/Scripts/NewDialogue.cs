@@ -17,6 +17,8 @@ public class NewDialogue : MonoBehaviour {
 	//Special characters that can be in a line of dialogue.
 	private char[] specialChars = {'[', ']'};
 
+	private const float DEFAULT_MESSAGE_SPEED = 0.06f;
+
 	//Events for hooking
 	public event OnStartHandler OnStart;
 	public delegate void OnStartHandler();
@@ -146,7 +148,38 @@ public class NewDialogue : MonoBehaviour {
 	}
 
 	void parseSpecialChar(ParsingContext context) {
-		//TODO deal with custom commands and rich text
+		if(context.rawLine[context.index] == '[') {
+			parseCommand(context);
+		}
+	}
+
+	void parseCommand(ParsingContext context) {
+		// grab the part of the string starting with the command character and ending at the end of the string
+		string lastPart = context.rawLine.Substring(context.index, context.rawLine.Length - context.index);
+		// get the index of where the command ends
+		int endIndex = lastPart.IndexOf(']');
+
+		if(endIndex == -1) {
+			throw new System.ArgumentException("Command in script had opening but no ending bracket");
+		}
+		// grab the command without the "[]"
+		string commandString = lastPart.Substring(1, endIndex - 1);
+
+		// update the index so that we don't display this command to the user
+		context.index = context.index + endIndex + 1;
+
+		// Now check if it's a command that we recognize and if so do the proper thing
+
+		if(commandString.Contains("textspeed=")) {
+			MessageSpeed = (1/float.Parse(commandString.Split('=')[1])) * DEFAULT_MESSAGE_SPEED;
+			return;
+		}
+
+		if(commandString.Contains("forceproceed")) {
+			Next();
+		}
+
+		
 	}
 
 	void parseNameAndEmotion(ParsingContext context) {

@@ -4,4 +4,4 @@ Bro1: Whoa, dude, like me too!
 
 
 
-Person1: (Yawn)
+Person1(bored): (Yawn)
