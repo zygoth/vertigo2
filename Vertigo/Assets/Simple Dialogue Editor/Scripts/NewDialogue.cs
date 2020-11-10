@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class NewDialogue : MonoBehaviour {
 
 	//List of Serializeable dialogue entities
-	public float MessageSpeed = 0.06f;
+	public float MessageSpeed = 0.05f;
 	public float MinimumWaitSpeed = 0.1f;
 	public List<string> dialogueLines = new List<string>();
 	public TextAsset cutsceneScript;
@@ -18,6 +18,8 @@ public class NewDialogue : MonoBehaviour {
 	private char[] specialChars = {'[', ']'};
 
 	private const float DEFAULT_MESSAGE_SPEED = 0.06f;
+
+	private ProfilePictureMap profileMap = new ProfilePictureMap();
 
 	//Events for hooking
 	public event OnStartHandler OnStart;
@@ -177,6 +179,7 @@ public class NewDialogue : MonoBehaviour {
 
 		if(commandString.Contains("forceproceed")) {
 			Next();
+			return;
 		}
 
 		
@@ -203,7 +206,15 @@ public class NewDialogue : MonoBehaviour {
 	}
 
 	void changePicture(string nameAndEmotion) {
-		// TODO figure out how to put a picture in the right place. the text position will need to be changed to give space for this.
+		GameObject UI_Profile = GameObject.Find("SDH_profile");
+		try {
+			UI_Profile.GetComponent<RawImage>().texture = Resources.Load<Texture>(profileMap.getProfilePath(nameAndEmotion));
+		}
+		catch (KeyNotFoundException)
+		{
+			UI_Profile.GetComponent<RawImage>().texture = Resources.Load<Texture>(profileMap.getProfilePath("default"));
+		    Debug.LogError("changePicture: unknown name + emotion read from script: " + nameAndEmotion);
+		}
 	}
 
 	IEnumerator WaitForNext(){

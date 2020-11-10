@@ -1,10 +1,10 @@
 NormalGuy: Hey, this is normal text.
 
-FastGuy: [textspeed=2]And this is fast text! Wow!!111
+FastGuy: [textspeed=2]And this is fast text! Wow!!111 So amazong!!!
 
-SlowGuy: [textspeed=.5]Help I'm trapped in a heavy gravity field
+SlowGuy: [textspeed=.5]Help I'm trapped in molasses
 
 CrazyGuy: [textspeed=4]OMG I'm tripping balls, how much caffeine was that I don't even know but now I want to[forceproceed]
-CrazyGuy: run a marathon and then run another one just because I can asdfasdfasdf
+CrazyGuy: run a marathon and then run another one just because I can asdfasdfasdf[forceproceed]
 
-NormalGuy: [textspeed=1]oooookay then
+NormalGuy: [textspeed=1]oooookay then[textspeed=.2]....[textspeed=1] maybe you should cut back a little.

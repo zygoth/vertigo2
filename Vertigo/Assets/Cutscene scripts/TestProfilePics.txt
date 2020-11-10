@@ -1,0 +1,3 @@
+Mazeman(surprised): Whoa! How did you get here?
+Mazeman: ...well hello and welcome to my test scene.
+Mazeman(annoyed): Next time I'll remember to lock the door...
