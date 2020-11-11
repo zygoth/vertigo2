@@ -125,6 +125,7 @@ public class NewDialogue : MonoBehaviour {
 
 	/*
 		The core of the parsing algorithm. Parses the next token available at context.index.
+		Returns true if we parsed a displayable character, false if we parsed something else.
 	*/
 	bool parseToken(ParsingContext context) {
 
@@ -180,9 +181,7 @@ public class NewDialogue : MonoBehaviour {
 		if(commandString.Contains("forceproceed")) {
 			Next();
 			return;
-		}
-
-		
+		}		
 	}
 
 	void parseNameAndEmotion(ParsingContext context) {
@@ -205,16 +204,44 @@ public class NewDialogue : MonoBehaviour {
 		changePicture(context.rawLine.Substring(0, colonIndex));
 	}
 
+	/* 
+		Change the profile picture based on who is talking. Also move the text to be centered
+		if this is flavor text and has no speaker.
+	*/
 	void changePicture(string nameAndEmotion) {
 		GameObject UI_Profile = GameObject.Find("SDH_profile");
-		try {
-			UI_Profile.GetComponent<RawImage>().texture = Resources.Load<Texture>(profileMap.getProfilePath(nameAndEmotion));
+
+		if(nameAndEmotion.Equals("nobody")) { // check to see if it's an object (no speaker)
+			
+			// make profile pic invisible
+			UI_Profile.GetComponent<RawImage>().enabled = false;
+
+			// move text over to fill the box
+			Text txtMessage = GameObject.Find ("SDH_txtMessage").GetComponent<Text>();
+			Vector2 anchorMin = txtMessage.GetComponent<RectTransform>().anchorMin;
+			txtMessage.GetComponent<RectTransform>().anchorMin = new Vector2(-.133f,anchorMin.y);
 		}
-		catch (KeyNotFoundException)
-		{
-			UI_Profile.GetComponent<RawImage>().texture = Resources.Load<Texture>(profileMap.getProfilePath("default"));
-		    Debug.LogError("changePicture: unknown name + emotion read from script: " + nameAndEmotion);
+		else { // otherwise, update the profile picture based on who is talking.
+			
+			// make profile pic visible
+			UI_Profile.GetComponent<RawImage>().enabled = true;
+
+			// move text over to give space for profile
+			Text txtMessage = GameObject.Find ("SDH_txtMessage").GetComponent<Text>();
+			Vector2 anchorMin = txtMessage.GetComponent<RectTransform>().anchorMin;
+			txtMessage.GetComponent<RectTransform>().anchorMin = new Vector2(0,anchorMin.y);
+			
+			// change the profile picture based off the mapping in the profile map
+			try {
+				UI_Profile.GetComponent<RawImage>().texture = Resources.Load<Texture>(profileMap.getProfilePath(nameAndEmotion));
+			}
+			catch (KeyNotFoundException) // display a default image if there is no mapping for this person
+			{
+				UI_Profile.GetComponent<RawImage>().texture = Resources.Load<Texture>(profileMap.getProfilePath("default"));
+			    Debug.LogError("changePicture: unknown name + emotion read from script: " + nameAndEmotion);
+			}	
 		}
+		
 	}
 
 	IEnumerator WaitForNext(){

@@ -1,0 +1,2 @@
+nobody: This is what text looks like when you observe an object.
+nobody: There's no speaker so we remove the pic and move the text over.
