@@ -2,10 +2,18 @@
 
 Worked on the story events leading up to the game.
 
+
 10/30/2020
 
 More work on the pre-game story.
 
+
 11/13/2020
 
 Took a break from the dialogue system and finished the basic outline of the pre-game plot.
+
+
+11/16/2020
+
+Worked on in-game object text for the home room, and outlined a new flashback scene. Finally getting to give the player character and Helena some
+interesting dialogue & character.
