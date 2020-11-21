@@ -15,11 +15,12 @@ public class NewDialogue : MonoBehaviour {
 	private bool _next = false;
 
 	//Special characters that can be in a line of dialogue.
-	private char[] specialChars = {'[', ']'};
+	private char[] specialChars = {'[', '<',};
 
 	private const float DEFAULT_MESSAGE_SPEED = 0.06f;
 
 	private ProfilePictureMap profileMap = new ProfilePictureMap();
+	private List<string> currentRichTextTags = new List<string>();
 
 	//Events for hooking
 	public event OnStartHandler OnStart;
@@ -144,7 +145,17 @@ public class NewDialogue : MonoBehaviour {
 		}
 
 		// Finally if we made it here then we reached a displayable character
-		context.displayedText += context.rawLine[context.index];
+
+		int richTextEndTagsLength = 0;
+		foreach(string s in currentRichTextTags) {
+			richTextEndTagsLength += 3 + s.Length;
+		}
+
+		string textWithoutClosingTags = context.displayedText.Substring(0, context.displayedText.Length - richTextEndTagsLength);
+		string closingTags = context.displayedText.Substring(context.displayedText.Length - richTextEndTagsLength);
+
+		// we must insert the new character before the rich text closing tags
+		context.displayedText = textWithoutClosingTags + context.rawLine[context.index] + closingTags;
 		context.index++;
 		context.txtMessage.text = context.displayedText;
 		return true;
@@ -154,6 +165,41 @@ public class NewDialogue : MonoBehaviour {
 		if(context.rawLine[context.index] == '[') {
 			parseCommand(context);
 		}
+		else if(context.rawLine[context.index] == '<') {
+			parseRichText(context);
+		}
+	}
+
+	/*
+		Parses a rich text element. These are not displayed to the user but are included in the displayed string
+		(Unity parses them and uses them to modify text style). We need to edit the displayed string such that
+		the style is applied correctly as the string is typed, and there is never an orphaned tag.
+	*/
+	void parseRichText(ParsingContext context) {
+		int closingBracketIndex = context.rawLine.IndexOf(">", context.index);
+		string tagName = context.rawLine.Substring(context.index + 1, (closingBracketIndex - context.index) - 1);
+
+		if(context.rawLine[context.index + 1] == '/') { // this is a closing tag, so stop applying this style
+			int richTextEndTagsLength = 0;
+			foreach(string s in currentRichTextTags) {
+				richTextEndTagsLength += 3 + s.Length;
+			}
+
+			string textWithoutClosingTags = context.displayedText.Substring(0, context.displayedText.Length - richTextEndTagsLength);
+			currentRichTextTags.Remove(tagName.Substring(1)); // chop off the "/" since this is a closing tag
+
+			foreach(string s in currentRichTextTags) {
+				textWithoutClosingTags += "</" + s + ">";
+				context.displayedText = textWithoutClosingTags;
+			}
+		}
+		else { // this is an opening tag, so add the tags to the displayed text
+			currentRichTextTags.Add(tagName);
+
+			context.displayedText += "<" + tagName + ">" + "</" + tagName + ">";	
+		}		
+
+		context.index = closingBracketIndex + 1;
 	}
 
 	void parseCommand(ParsingContext context) {
