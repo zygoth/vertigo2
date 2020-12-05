@@ -14,6 +14,9 @@ public class NewDialogue : MonoBehaviour {
 	//Trigger for message progression
 	private bool _next = false;
 
+	// Keep track of if the hud is visible or not right now
+	private bool hudVisible = false;
+
 	//Special characters that can be in a line of dialogue.
 	private char[] specialChars = {'[', '<',};
 
@@ -21,42 +24,69 @@ public class NewDialogue : MonoBehaviour {
 
 	private ProfilePictureMap profileMap = new ProfilePictureMap();
 	private List<string> currentRichTextTags = new List<string>();
+	private CutsceneManager cutsceneManager;
 
 	//Events for hooking
-	public event OnStartHandler OnStart;
-	public delegate void OnStartHandler();
-	public event OnEndHandler OnEnd;
-	public delegate void OnEndHandler();
-	public event OnEventHandler OnEvent;
-	public delegate void OnEventHandler(string EventName);
-	public event OnDialogueChangedHandler OnDialogueChanged;
-	public delegate void OnDialogueChangedHandler(string DialogueItem);
+	//public event OnStartHandler OnStart;
+	//public delegate void OnStartHandler();
+	//public event OnEndHandler OnEnd;
+	//public delegate void OnEndHandler();
+
+	//kept to remember how to bind to events
+		/*dialogue.OnStart += () => {
+			GameObject character = GameObject.Find ("Character");
+			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
+			script.disableMovement ();
+		};*/	
 	
 
 	//Initiate the playback engine
 	public void Play(){
 
+		cutsceneManager = GameObject.Find("Cutscene Manager").GetComponent<CutsceneManager>();
+		cutsceneManager.doAction("disablePlayerMovement");
+
 		string[] lines = cutsceneScript.text.Split('\n');
 
+		if(lines.Length > 0 && lines[0] != "[hidehud]") {
+			showHUD();
+		}
 		foreach(string line in lines){
 			if(line.Length > 1) {
 				dialogueLines.Add(line);
 			}			
 		}		
 
-		GameObject UI_Hud = GameObject.Find("SDH_UI_GROUP");
-		if (UI_Hud) {
-			UI_Hud.GetComponent<Animator> ().SetTrigger ("IN");
+		showHUD();
 
-			OnStart ();
-			StartCoroutine (RunDialogue ());
-		} else {
-			Debug.LogError("ERROR: SDE Reqires HUD Prefab In Scene");
-		}
+		//OnStart ();
+		StartCoroutine (RunDialogue ());
 	}
 
 	public void Next(){
 		_next = true;
+	}
+
+	private void showHUD() {
+		GameObject UI_Hud = GameObject.Find("SDH_UI_GROUP");
+		if (UI_Hud) {
+			UI_Hud.GetComponent<Animator> ().SetTrigger ("IN");
+			hudVisible = true;
+		} else {
+			Debug.LogError("ERROR: SDE Reqires HUD Prefab In Scene");
+			throw new System.ArgumentException("ERROR: SDE Reqires HUD Prefab In Scene");
+		}
+	}
+
+	private void hideHUD() {
+		GameObject UI_Hud = GameObject.Find("SDH_UI_GROUP");
+		if (UI_Hud) {
+			UI_Hud.GetComponent<Animator> ().SetTrigger ("OUT");
+			hudVisible = false;
+		} else {
+			Debug.LogError("ERROR: SDE Reqires HUD Prefab In Scene");
+			throw new System.ArgumentException("ERROR: SDE Reqires HUD Prefab In Scene");
+		}		
 	}
 
 	//Coroutine entrypoint for dialogue
@@ -64,13 +94,10 @@ public class NewDialogue : MonoBehaviour {
 
 		//Iterate each Dialogue Entity and yield to the display function.
 		foreach(string DI in dialogueLines){
-
-			OnDialogueChanged(DI);
 			yield return StartCoroutine(DisplayDialogue(DI));
-
 		};
 
-		OnEnd ();
+		cutsceneManager.doAction("enablePlayerMovement");
 		GameObject UI_Hud = GameObject.Find("SDH_UI_GROUP");
 		UI_Hud.GetComponent<Animator> ().SetTrigger ("OUT");
 
@@ -221,6 +248,11 @@ public class NewDialogue : MonoBehaviour {
 
 		if(commandString.Contains("textspeed=")) {
 			MessageSpeed = (1/float.Parse(commandString.Split('=')[1])) * DEFAULT_MESSAGE_SPEED;
+			return;
+		}
+
+		if(commandString.Contains("action=")) {
+			cutsceneManager.doAction(commandString.Split('=')[1]);
 			return;
 		}
 

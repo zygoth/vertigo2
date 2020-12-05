@@ -1,0 +1,4 @@
+Mazeman: Watch this!
+Mazeman: [action=explode] 
+Mazeman: [action=explode]Pretty [action=explode]cool [action=explode]huh?
+Mazeman: [action=explode]Wait [action=explode]no [action=explode]stop [action=explode]why

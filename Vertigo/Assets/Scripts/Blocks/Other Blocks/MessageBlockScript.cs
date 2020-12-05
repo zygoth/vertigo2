@@ -9,38 +9,8 @@ public class MessageBlockScript : MonoBehaviour {
 	private NewDialogue dialogue;
 
 	void Start () 
-	{
-		
-		dialogue = GetComponent<NewDialogue> ();
-		
-		//Binding to start event, you can trigger code logic when a chat starts.
-		dialogue.OnStart += () => {
-			GameObject character = GameObject.Find ("Character");
-			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
-			script.disableMovement ();
-		};
-
-		//Binding to end event, you can trigger code logic when chat ends.
-		dialogue.OnEnd += () => {
-			GameObject character = GameObject.Find ("Character");
-			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
-			script.enableMovement ();
-		};
-
-		//binding to Event event, you can triger code on certain conditions i.e "screenshake", "playsound", "takedamage"
-		dialogue.OnEvent += (EventName) => {		
-
-			if(EventName == "ShakeScreen"){
-				//Shake my screen using my own code here....
-			}
-			//Sample usage of the event system
-			//if(EventName == "ScreenShake") { ScreenShake() }
-		};
-
-		//binding to OnDialogueChange, you can trigger code when the player changes the message.
-		dialogue.OnDialogueChanged += (DialogueItem) => {
-			
-		};
+	{		
+		dialogue = GetComponent<NewDialogue> ();		
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
