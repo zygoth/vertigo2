@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +19,12 @@ using UnityEngine;
 public class CutsceneManager : MonoBehaviour
 {
 	public GameObject explosionPrefab;
+	public GameObject multiExplosionPrefab;
 
 	public event OnEventHandler OnEvent;
 	public delegate void OnEventHandler(string EventName);
 
-	public void doAction(string action) {
+	public void doAction(string action, ICutsceneEventListener eventListener) {
 		Debug.Log("whee we did an action: " + action);
 
 		if(action.Equals("explode")) { // just for testing
@@ -44,6 +45,13 @@ public class CutsceneManager : MonoBehaviour
 			GameObject character = GameObject.Find ("Character");
 			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
 			script.enableMovement ();
+		}
+
+		if(action.Equals("multiExplosion")) {
+			Debug.Log("inside multi explosion action code");
+			GameObject mExplode = Instantiate (multiExplosionPrefab, GameObject.Find("Character").transform.position, Quaternion.identity);
+			mExplode.GetComponent<MultiExplosion>().eventName = "multiExplosion";
+			mExplode.GetComponent<MultiExplosion>().eventListener = eventListener;
 		}
 	}
 

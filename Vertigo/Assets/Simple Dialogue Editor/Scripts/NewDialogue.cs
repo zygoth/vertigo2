@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class NewDialogue : MonoBehaviour {
+public class NewDialogue : MonoBehaviour, ICutsceneEventListener{
 
 	//List of Serializeable dialogue entities
 	public float MessageSpeed = 0.05f;
@@ -19,6 +19,8 @@ public class NewDialogue : MonoBehaviour {
 
 	//Special characters that can be in a line of dialogue.
 	private char[] specialChars = {'[', '<',};
+
+	private string waitForEvent = "";
 
 	private const float DEFAULT_MESSAGE_SPEED = 0.06f;
 
@@ -37,14 +39,14 @@ public class NewDialogue : MonoBehaviour {
 			GameObject character = GameObject.Find ("Character");
 			CharacterControllerScript script = (CharacterControllerScript)character.GetComponent ("CharacterControllerScript");
 			script.disableMovement ();
-		};*/	
+		};*/
 	
 
 	//Initiate the playback engine
 	public void Play(){
 
 		cutsceneManager = GameObject.Find("Cutscene Manager").GetComponent<CutsceneManager>();
-		cutsceneManager.doAction("disablePlayerMovement");
+		cutsceneManager.doAction("disablePlayerMovement", this);
 
 		string[] lines = cutsceneScript.text.Split('\n');
 
@@ -56,8 +58,6 @@ public class NewDialogue : MonoBehaviour {
 				dialogueLines.Add(line);
 			}			
 		}		
-
-		showHUD();
 
 		//OnStart ();
 		StartCoroutine (RunDialogue ());
@@ -75,6 +75,13 @@ public class NewDialogue : MonoBehaviour {
 		} else {
 			Debug.LogError("ERROR: SDE Reqires HUD Prefab In Scene");
 			throw new System.ArgumentException("ERROR: SDE Reqires HUD Prefab In Scene");
+		}
+	}
+
+	public void OnEvent(string eventName) {
+		if(waitForEvent.Equals(eventName)) {
+			Debug.Log(waitForEvent + " =? " + eventName);
+			waitForEvent = "";
 		}
 	}
 
@@ -97,7 +104,7 @@ public class NewDialogue : MonoBehaviour {
 			yield return StartCoroutine(DisplayDialogue(DI));
 		};
 
-		cutsceneManager.doAction("enablePlayerMovement");
+		cutsceneManager.doAction("enablePlayerMovement", this);
 		GameObject UI_Hud = GameObject.Find("SDH_UI_GROUP");
 		UI_Hud.GetComponent<Animator> ().SetTrigger ("OUT");
 
@@ -130,9 +137,13 @@ public class NewDialogue : MonoBehaviour {
 		
 		ParsingContext context = new ParsingContext(line, "", 0, txtName, txtMessage);
 
-		while(context.index < context.rawLine.Length) {			
-			parseUntilNextCharacter(context);
-			sfx.Play();
+		while(context.index < context.rawLine.Length | !waitForEvent.Equals("")) {			
+
+			if(waitForEvent.Equals("")) {
+				parseUntilNextCharacter(context);
+				sfx.Play();	
+			}
+			
 			yield return new WaitForSeconds(MessageSpeed);
 		};
 	}
@@ -252,7 +263,7 @@ public class NewDialogue : MonoBehaviour {
 		}
 
 		if(commandString.Contains("action=")) {
-			cutsceneManager.doAction(commandString.Split('=')[1]);
+			cutsceneManager.doAction(commandString.Split('=')[1], this);
 			return;
 		}
 
@@ -260,6 +271,12 @@ public class NewDialogue : MonoBehaviour {
 			Next();
 			return;
 		}		
+
+		if(commandString.Contains("waitforevent=")) {
+			Debug.Log(commandString);
+			waitForEvent = commandString.Split('=')[1];
+			return;
+		}
 	}
 
 	void parseNameAndEmotion(ParsingContext context) {
